@@ -1,0 +1,118 @@
+// Shared Styles
+.dashboard, .index, .new, .show, .edit {
+  min-height: 600px;
+
+  .page-title {
+    padding-top: 20px;
+
+    .glyphicon {
+      font-size: 25px;
+      margin-right: 10px; 
+    }
+
+    h2 {
+      display: inline;
+    }
+
+    .glyphicon-pencil {
+      font-size: 20px; 
+      margin-left: 5px;
+    }
+  }
+
+  .inline-title {
+    margin-bottom: 15px;
+
+    h1, h2, h3, h4, h5 {
+      display: inline;
+    }
+  }
+
+  .panel {
+
+    h3 {
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .panel-table {
+    margin: 10px 0;
+    width: 100%;
+
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    td.nesting {
+      width: 10%;
+    }
+
+    td.left {
+      width: 20%;
+    }
+
+    td.right{
+      padding-right: 5%;
+    }
+
+    textarea {
+      height: 100px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .bottom-actions {
+    size: 50px;
+
+    ul {
+      list-style: none;
+
+      li {
+        display: inline;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.index{
+
+  .table-actions {
+    width: 120px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li{
+        display: inline;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .green {
+    color: #5cb85c;
+  }
+
+  .red {
+    color: #d9534f;
+  }
+
+  .inactive {
+    font-style: italic;
+    color: #bbb;
+  }
+}
+
+.new {
+  .input-icon {
+    font-weight: bold;
+  }
+}

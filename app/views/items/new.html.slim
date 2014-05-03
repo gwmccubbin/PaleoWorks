@@ -1,0 +1,65 @@
+.new.item-new
+  .page-title
+    span.glyphicon.glyphicon-cutlery
+    h2 New Menu Item
+  hr
+  .col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
+    .panel.panel-default
+      .panel-heading
+        h3 Menu Item Info
+      .panel-body
+        table.panel-table
+          tbody
+            tr
+              td.left
+                label Item Name:
+              td.right
+                .input-group
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-cutlery
+                  input.form-control type="text" placeholder='Item Name'
+            tr
+              td.left
+                label Price:
+              td.right
+                .input-group
+                  span.input-group-addon
+                    span.input-icon $ 
+                  input.form-control type='text' placeholder='Price (Eg. 6.99'
+            tr
+              td.left
+                label Item Type:
+              td.right
+                .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Breakfast
+            tr
+              td.left
+              td.right
+                .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Lunch            
+            tr
+              td.left
+              td.right
+                .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Dinner            
+            tr
+              td.left
+              td.right
+                .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Special
+
+    .bottom-actions.pull-right
+      ul
+        li    
+          .btn.btn-info.btn-lareg Save & Add New
+        li
+          .btn.btn-primary.btn-large Add Item
+
+
+  .col-md-offset-2.col-lg-offset-2
+    .row
+

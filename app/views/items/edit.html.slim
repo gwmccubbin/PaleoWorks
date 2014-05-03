@@ -1,0 +1,41 @@
+.edit.item-edit
+  .page-title
+    span.glyphicon.glyphicon-cutlery
+    h2 Edit Item: Item Name
+  hr
+  .panel.panel-default
+    .panel-heading
+      h3 Item Info
+    .panel-body
+      table.table
+        tbody
+          tr
+            td
+              .input-group
+                span.input-group-addon
+                  span.glyphicon.glyphicon-cutlery
+                input.form-control placeholder="Name" type="text" 
+            td
+              .input-group
+                span.input-group-addon
+                  span.input-icon $
+                input.form-control placeholder="Price (Eg. 8.99)" type="text"           
+            td
+              .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Breakfast
+            td
+              .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Lunch
+            td
+              .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Dinner
+            td
+              .radio-input
+                  input type='radio' name='meal-type' value='Breakfast' 
+                  label Special
+
+  .bottom-actions 
+    buton.btn.btn-primary Update Item

@@ -1,0 +1,21 @@
+// Custom Shortcuts
+.paginated {
+  text-align: center;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.inline-list {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    display: inline;
+  }
+}
