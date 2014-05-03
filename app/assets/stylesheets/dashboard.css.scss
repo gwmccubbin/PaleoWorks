@@ -1,0 +1,134 @@
+.dashboard {
+
+  .db-title {
+    padding-top: 20px;
+
+    .glyphicon {
+      font-size: 28px;
+      margin-right: 10px; 
+    }
+
+    h1 {
+      display: inline;
+    }
+
+    .glyphicon-pencil {
+      font-size: 20px; 
+      margin-left: 5px;
+    }
+  }
+
+  .well {
+    ul {
+      margin-bottom: 0px;
+    }
+  }
+
+
+  .db-controls {
+    padding-left: 0px;
+
+    .db-control {
+
+      &:after{
+        content: ' | '
+      }
+
+      &:first-child:after {
+        content: ' '
+      }
+
+      &:last-child:after {
+        content: ''
+      }
+    }
+    .glyphicon {
+      margin-right: 5px;
+    }
+  }
+
+  .db-buttons {
+    margin: 40px 0;
+    
+    .db-button {
+      margin-right: 10px;
+
+      .btn {
+        margin-top: -18px;
+      }
+    }
+  }
+
+  .row {
+    margin-bottom: 25px;
+  }
+
+  .section-title {
+    padding-bottom: 10px;
+
+    .glyphicon {
+      font-size: 25px;
+      margin-right: 10px; 
+    }
+
+    h2 {
+      display: inline;
+    }
+
+    .glyphicon-pencil {
+      font-size: 12px; 
+      margin-left: 8px;
+    }
+  }
+
+  .panel-title{
+    // padding-top: 10px;
+    // padding-bottom: 10px;
+
+    .glyphicon {
+      font-size: 14px;
+      margin-right: 10px; 
+    }
+
+    h3 {
+      display: inline;
+    }
+  }
+
+  #addCustomer {
+    #addCustomerLabel {
+      font-size: 30px;
+    }
+    .addCustomerHeader {
+      font-size: 25px;
+      margin-top: 50px;
+    }
+
+    .meal-title {
+      font-size: 20px;
+    }
+
+    .menu-item-title {
+      font-size: 16px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    input[type=checkbox] {
+      /* Double-sized Checkboxes */
+      -ms-transform: scale(1.5); /* IE */
+      -moz-transform: scale(1.5); /* FF */
+      -webkit-transform: scale(1.5); /* Safari and Chrome */
+      -o-transform: scale(1.5); /* Opera */
+      padding: 10px;
+      margin-left: 20px;
+      margin-top: -20px;
+    }
+
+    .space-bottom{
+      margin-bottom: 20px;
+    }
+  }
+}
