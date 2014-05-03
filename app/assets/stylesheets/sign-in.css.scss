@@ -1,0 +1,65 @@
+.sign-in {
+  width: 500px;
+  margin: 50px auto 0px auto;
+
+  h2 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .panel-body {
+    padding-top: 50px;
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .bottom-actions{
+      margin-bottom: 50px;
+
+      .check-box {
+        float: left;
+      }
+
+      .check-box {
+        margin-top: 10px;
+        font-size: 20px;
+
+        input[type=checkbox]{
+          margin-right: 20px;
+        }
+      }
+
+      .sign-in-button{
+        float: right;
+        text-transform: lowercase;
+      }
+
+      &:after {
+        content:'';
+        display:block;
+        clear: both;
+      }    
+    }
+
+    .links {
+
+      .devise-links {
+        text-align: center;
+        list-style: none;
+      
+        .devise-link{
+          display: inline;
+
+          &:after{
+            content: ' | '
+          }
+
+          &:last-child:after {
+            content: ''
+          }
+        }
+      }
+    }
+  }
+}
