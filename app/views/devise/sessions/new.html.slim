@@ -1,0 +1,22 @@
+div.sign-in.panel.panel-default
+  div.panel-heading
+    h2 Sign in
+  div.panel-body
+    = render partial: 'shared/flash_messages', flash: flash
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      div.input-group.input-group-lg
+        span.input-group-addon @
+        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'email'
+      div.input-group.input-group-lg
+        span.input-group-addon p
+        = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'password'
+      div.bottom-actions
+        - if devise_mapping.rememberable?
+          div.check-box
+            = f.check_box :remember_me
+            = f.label :remember_me
+        div 
+          = f.submit "sign in", class: 'btn btn-lg btn-primary sign-in-button'
+      div.links
+        hr    
+        = render "devise/shared/links"
