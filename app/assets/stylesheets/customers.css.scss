@@ -1,0 +1,29 @@
+.customer-new, .customer-show, .customer-edit {
+
+  input[type=checkbox] {
+    padding: 10px;
+  }
+}
+
+// New Page
+.customer-new {
+  
+  .panel-body{
+    .check-box {
+      input[type=checkbox] {
+        display: inline;
+      }
+    }
+  }
+}
+
+// Show Page
+.customer-show {
+
+  .well-sm {
+    background-color: #fff;
+    padding: 0 10px;
+    margin: 0 0 50px 0;
+  }
+}
+
