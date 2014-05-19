@@ -7,6 +7,7 @@ class CustomersController < ApplicationController
 
   def new
     @customer =  Customer.new
+    @locations = Location.all
   end
 
   def create

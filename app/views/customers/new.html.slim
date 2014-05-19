@@ -9,41 +9,32 @@
       .panel-heading
         h3 Customer Info
       .panel-body
-        table.panel-table
-          tbody
-            tr
-              td.left
-                label First Name: 
-              td.right
-                .input-group
-                    span.input-group-addon
-                      span.glyphicon.glyphicon-user
-                    input.form-control placeholder="First Name" type="text"
-            tr
-              td.left
-                label Last Name 
-              td.right
-                .input-group
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-user
-                  input.form-control placeholder="Last Name" type="text"
-            tr
-              td.left
-                label Phone:
-              td.right  
-                .input-group
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-phone-alt
-                  input.form-control placeholder="Phone (Ex: 6158494949)" type="text"
-            
-            tr
-              td.left
-                label Email:
-              td.right   
-                .input-group
-                  span.input-group-addon
-                    span.bold @
-                  input.form-control placeholder="Email" type="text"
+        = form_for @customer, html: { class: 'form-horizontal' } do |f|         
+          .form-group
+            = f.label 'First Name', class: 'col-xs-2 control-label'
+            .input-group.col-xs-8
+                span.input-group-addon
+                  span.glyphicon.glyphicon-user
+                = f.text_field :first_name, placeholder: 'First Name', class: 'form-control'
+          .form-group
+            = f.label 'Last Name', class: 'col-xs-2 control-label'
+            .input-group.col-xs-8
+                span.input-group-addon
+                  span.glyphicon.glyphicon-user
+                = f.text_field :last_name, placeholder: 'Last Name', class: 'form-control'            
+          .form-group
+            = f.label 'Phone', class: 'col-xs-2 control-label'
+            .input-group.col-xs-8
+                span.input-group-addon
+                  span.glyphicon.glyphicon-phone-alt
+                = f.text_field :last_name, placeholder: 'Phone (Ex: 6158494949)', class: 'form-control'    
+          .form-group
+            = f.label 'Email', class: 'col-xs-2 control-label'
+            .input-group.col-xs-8
+                span.input-group-addon
+                  span.icon-email
+                = f.text_field :last_name, placeholder: 'Email', class: 'form-control'    
+
 
     .panel.panel-default
       .panel-heading  
@@ -61,9 +52,9 @@
                 label Location:
               td.right
                 .input-group
-                  span.input-group-addon
+                  span.input-group-addon.select2-input-group-addon
                     span.glyphicon.glyphicon-home
-                  select.form-control name="Gym Locations"
+                  select#e2.select2-custom.form-control name="Gym Locations"
                     option value="CrossFit 615" CrossFit 615
                     option value="CrossFit West Nashville" CrossFit West Nashville
                     option value="CrossFit The Gulch" CrossFit The Gulch                
