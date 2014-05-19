@@ -1,0 +1,9 @@
+// Custom Icons
+.icon-email {
+  font-weight: bold;
+  font-size: 18px;
+  
+  &:before {
+    content: '@'
+  }
+}
