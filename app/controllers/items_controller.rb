@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  responders :flash
   def index
   end
 
