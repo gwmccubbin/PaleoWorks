@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507164157) do
+ActiveRecord::Schema.define(version: 20140522180844) do
 
   create_table "addresses", force: true do |t|
     t.string   "address1"
@@ -64,17 +64,60 @@ ActiveRecord::Schema.define(version: 20140507164157) do
     t.string   "email"
   end
 
+  create_table "item_types", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.decimal  "cost"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "item_type_id"
+  end
+
   create_table "locations", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone"
+    t.integer  "customer_id"
+    t.integer  "address_id"
   end
 
   create_table "menu_items", force: true do |t|
+    t.integer  "menu_id"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menus", force: true do |t|
     t.string   "name"
-    t.string   "meal_type"
-    t.decimal  "price",      precision: 8, scale: 2
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "order_items", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "qty"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.datetime "delivery_date"
+    t.integer  "customer_id"
+    t.integer  "location_id"
+    t.boolean  "confirmed"
+    t.string   "token"
+    t.string   "challenge"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,6 +144,15 @@ ActiveRecord::Schema.define(version: 20140507164157) do
   create_table "roles", force: true do |t|
     t.string   "name"
     t.boolean  "active",     default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "standard_orders", force: true do |t|
+    t.integer  "breakfast_qty"
+    t.integer  "lunch_qty"
+    t.integer  "dinner_qty"
+    t.boolean  "recurring"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
