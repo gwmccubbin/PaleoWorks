@@ -1,6 +1,9 @@
-class ItemsController < ApplicationController
+class ItemsController < ApplicationController  
+  load_and_authorize_resource only: [:new, :show, :edit]
   responders :flash
+
   def index
+    @items = Item.paginate :page => params[:page], :per_page => 10
   end
 
   def new
@@ -15,22 +18,26 @@ class ItemsController < ApplicationController
              items_path
            end
 
-    if @item.save
-      flash[:success] = 'Item successfully added.'
-    else
-      flash[:error] = 'Item cannot be saved.'
-    end
-
+    @item.save
     respond_with @item, location: path
+  end
+
+  def show
   end
 
   def edit
   end
   
   def update
+    @item = Item.find params[:id]
+    @item.update_attributes item_params
+    respond_with @item, location: @item
   end
 
   def destroy
+    @item = Item.find params[:id]
+    @item.destroy
+    respond_with @item, location: items_path
   end
 
   private
