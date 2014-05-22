@@ -3,134 +3,37 @@
     span.glyphicon.glyphicon-cutlery
     h2.sub-header All Menu Items
   hr
-  .table-responsive
-    table.table.table-striped
-      thead
-        tr
-          th #
-          th Name
-          th Type
-          th Price
-          th Menu ID
-          th Actions
-      tbody
+  .page-body
+    .table-responsive
+      table.table.table-striped
+        thead
           tr
-            td 1
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td none
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 2
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td none
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 3
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td none
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 4
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td 1
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 5
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td none
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 6
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td 2
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 7
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td 1
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 8
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td none
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 9
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td 3
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
-          tr
-            td 10
-            td Bacon and Eggs
-            td Breakfast
-            td $4.82
-            td 4
-            td
-              a href='#' Show 
-              | | 
-              a href='#' Edit 
-              | | 
-              a href='#' Delete
+            th #
+            th Name
+            th Type
+            th Cost
+            th Price
+            th Actions
+          tbody
+            - @items.each do |item|
+                tr
+                  td = item.id
+                  td = link_to "#{item.name}", item_path(item)
+                  td = item.item_type.name
+                  td = number_to_currency item.cost
+                  td = number_to_currency item.price
+                  td.table-actions
+                    ul
+                      li              
+                      = link_to item_path(item), title: 'Info'
+                        span.glyphicon.glyphicon-eye-open
+                      li 
+                      = link_to edit_item_path(item), title: 'Edit'
+                        span.glyphicon.glyphicon-pencil
+                      li
+                        = link_to item_path(item), title: 'Delete', method: 'delete', 
+                                                   confirm: "Are you sure you want to delete #{item.name}?"
+                          span.glyphicon.glyphicon-remove
+
+  .paginated
+    = will_paginate @collection, renderer: BootstrapPagination::Rails

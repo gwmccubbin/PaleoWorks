@@ -79,6 +79,10 @@
 
 .index{
 
+  .page-body {
+    min-height: 407px;
+  }
+
   .table-actions {
     width: 120px;
     padding-left: 0;
@@ -88,6 +92,7 @@
 
     ul {
       list-style: none;
+      margin-bottom: 0px;
       padding-left: 0;
 
       li{
