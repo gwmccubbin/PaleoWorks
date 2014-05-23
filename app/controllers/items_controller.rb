@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController  
   load_and_authorize_resource only: [:new, :show, :edit]
-  responders :flash
 
   def index
     @items = Item.paginate :page => params[:page], :per_page => 10
