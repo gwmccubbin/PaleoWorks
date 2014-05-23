@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController  
-  load_and_authorize_resource only: [:new, :show, :edit]
+  load_and_authorize_resource except: [:index, :create]
 
   def index
     @items = Item.paginate :page => params[:page], :per_page => 10
@@ -28,13 +28,11 @@ class ItemsController < ApplicationController
   end
   
   def update
-    @item = Item.find params[:id]
     @item.update_attributes item_params
     respond_with @item, location: @item
   end
 
   def destroy
-    @item = Item.find params[:id]
     @item.destroy
     respond_with @item, location: items_path
   end
