@@ -2,24 +2,17 @@ class Customer < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
   has_many :addresses
   has_many :away_dates
-  has_many :standard_orders
+  has_one :standard_order
   has_many :orders
-  has_many :customer_locations
-  has_many :locations, through: :customer_locations
+  belongs_to :location
+  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :standard_order
 
   def full_name
     "#{first_name} #{last_name}"
   end
 
-  def location
-    locations.first
-  end
-
-  def location_name
-    if locations.any?
-      locations.first.name
-    else
-      'N/A'
-    end
+  def address
+    addresses.first
   end
 end
