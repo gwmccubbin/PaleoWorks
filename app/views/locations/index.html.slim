@@ -14,123 +14,23 @@
           th Total Customers
           th Actions
       tbody
+        - @locations.each do |location|
           tr
-            td 1
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 2
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 3
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 4
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 5
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 6
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 7
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 8
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 9
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
-          tr
-            td 10
-            td CrossFit West Nashville
-            td (615) 3243 - 4323
-            td 111 Surprise Lane, 37201
-            td 43
-            td
-              a href='#' Show 
-              | |  
-              a href='#' Edit 
-              | | 
-              a href='#' Delete            
+            td = location.id
+            td = link_to location.name, location_path(location)
+            td = location.phone
+            td = location.street_address if location.address.present?
+            td = location.customers.count       
+            td.table-actions
+              ul
+                li              
+                = link_to location_path(location), title: 'Info'
+                  span.glyphicon.glyphicon-eye-open
+                li 
+                = link_to edit_location_path(location), title: 'Edit'
+                  span.glyphicon.glyphicon-pencil
+                li
+                  = link_to location_path(location), title: 'Delete', method: 'delete', confirm: 'Are you sure you want to delete this location?'
+                    span.glyphicon.glyphicon-remove
+  
+  = render '/shared/pagination'
