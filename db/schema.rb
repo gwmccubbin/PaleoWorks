@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522180844) do
+ActiveRecord::Schema.define(version: 20140529233810) do
 
   create_table "addresses", force: true do |t|
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
-    t.string   "state",       default: "TN"
+    t.string   "state"
     t.string   "zip"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -39,13 +39,6 @@ ActiveRecord::Schema.define(version: 20140522180844) do
     t.datetime "updated_at"
   end
 
-  create_table "customer_locations", force: true do |t|
-    t.integer  "location_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "customer_id"
-  end
-
   create_table "customer_recurring_orders", force: true do |t|
     t.integer  "customer_id"
     t.integer  "recurring_order_id"
@@ -56,12 +49,14 @@ ActiveRecord::Schema.define(version: 20140522180844) do
   create_table "customers", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "active",     default: true
+    t.boolean  "active",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "delivery",   default: false
+    t.boolean  "delivery",    default: false
     t.string   "phone"
     t.string   "email"
+    t.integer  "location_id"
+    t.text     "notes"
   end
 
   create_table "item_types", force: true do |t|
@@ -86,6 +81,7 @@ ActiveRecord::Schema.define(version: 20140522180844) do
     t.string   "phone"
     t.integer  "customer_id"
     t.integer  "address_id"
+    t.text     "notes"
   end
 
   create_table "menu_items", force: true do |t|
@@ -120,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140522180844) do
     t.string   "challenge"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "notes"
   end
 
   create_table "recurring_order_menu_items", force: true do |t|
@@ -155,6 +152,9 @@ ActiveRecord::Schema.define(version: 20140522180844) do
     t.boolean  "recurring"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "notes"
+    t.integer  "special_qty"
+    t.integer  "customer_id"
   end
 
   create_table "user_roles", force: true do |t|
