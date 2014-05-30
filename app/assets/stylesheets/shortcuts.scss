@@ -11,6 +11,15 @@
   font-weight: bold;
 }
 
+.inline-heading {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+  h1, h2, h3, h4, h5 {
+    display: inline;
+  }
+}
+
 .inline-list {
   list-style: none;
   padding-left: 0;
