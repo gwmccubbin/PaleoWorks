@@ -15,6 +15,7 @@
             th Phone
             th Pickup Location
             th Custom Delivery
+            th Standard Order
             th Active
             th Actions
         tbody
@@ -24,12 +25,13 @@
               td = link_to "#{customer.first_name}", customer_path(customer)
               td = link_to "#{customer.last_name}", customer_path(customer)
               td = customer.phone
-              td = customer.location_name 
+              td = customer.location.name if customer.location_id
               td 
                 - if customer.delivery
                   span.green.glyphicon.glyphicon-ok
-                - else
-                  span -
+              td
+                - if customer.standard_order.present?
+                  span.green.glyphicon.glyphicon-ok
               td
                 - if customer.active
                   span.green.glyphicon.glyphicon-ok
@@ -45,8 +47,7 @@
                   = link_to edit_customer_path(customer), title: 'Edit'
                     span.glyphicon.glyphicon-pencil
                   li
-                    = link_to customer_path(customer), title: 'Delete', method: 'delete'
+                    = link_to customer_path(customer), title: 'Delete', method: 'delete', confirm: 'Are you sure you want to delete customer?'
                       span.glyphicon.glyphicon-remove
   
-  .paginated
-    = will_paginate @collection, renderer: BootstrapPagination::Rails
+  = render '/shared/pagination'
