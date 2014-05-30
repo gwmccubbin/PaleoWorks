@@ -6,7 +6,13 @@
 }
 
 // New Page
-.customer-new {
+.customer-new, .customer-edit {
+
+  .inline-heading {
+    input[type=checkbox] {
+      margin-left: 10px; 
+    }
+  }
 
   .panel-body{
 
@@ -14,6 +20,11 @@
       input[type=checkbox] {
         display: inline;
       }
+    }
+
+    textarea {
+      height: 100px;
+      border-radius: 4px !important;
     }
   }
 }
