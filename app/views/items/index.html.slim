@@ -35,5 +35,5 @@
                                                    confirm: "Are you sure you want to delete #{item.name}?"
                           span.glyphicon.glyphicon-remove
 
-  .paginated
-    = will_paginate @collection, renderer: BootstrapPagination::Rails
+  = render '/shared/pagination'
+
