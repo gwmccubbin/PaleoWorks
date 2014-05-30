@@ -1,0 +1,51 @@
+.new.menu-new
+  .page-title
+    span.glyphicon.glyphicon-list
+    h2 Add Menu
+  hr
+  .col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
+    = form_for @menu do |f|
+      .panel.panel-default
+        .panel-heading  
+          h3 Menu Info
+
+        .panel-body       
+
+        - @breakfasts.each do |breakfast|
+          = fields_for :menu_items do |mi|
+            .form-group
+              = mi.label 'Breakfast', class: 'col-xs-2 control-label'
+              .input-group.col-xs-8
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-cutlery
+                  = mi.select 'item_ids[]', Item.all.collect { |i| [ i.name, i.id ] }, class: 'form-control'
+
+          / = fields_for :menu_item do |m|
+          /   = m.label 'Breakfast 2', class: 'col-xs-2 control-label'
+          /   .input-group.col-xs-8
+          /       span.input-group-addon
+          /         span.glyphicon.glyphicon-cutlery
+          /       = m.select :item_id, Item.all.collect { |i| [ i.name, i.id ] }, class: 'form-control'
+
+
+            / = f.label 'Breakfast 2', class: 'col-xs-2 control-label'
+            / .input-group.col-xs-8
+            /     span.input-group-addon
+            /       span.glyphicon.glyphicon-cutlery
+            /     = f.select :items, Item.all.collect { |i| [ i.name, i.id ] }, class: 'form-control'
+
+            / = f.label 'Breakfast 3', class: 'col-xs-2 control-label'
+            / .input-group.col-xs-8
+            /     span.input-group-addon
+            /       span.glyphicon.glyphicon-cutlery
+            /     = f.select :items, Item.all.collect { |i| [ i.name, i.id ] }, class: 'form-control'
+
+      .bottom-actions.pull-right
+        ul
+          li
+            = f.submit 'Save & Add New', class: 'btn btn-info'
+          li
+            = f.submit 'Add Item', class: 'btn btn-primary'
+
+  .col-md-offset-2.col-lg-offset-2
+    .row
