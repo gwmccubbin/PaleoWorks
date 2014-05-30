@@ -1,0 +1,149 @@
+.col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
+  = form_for @customer, html: { class: 'form-horizontal' } do |f|         
+
+    .panel.panel-default
+      .panel-heading
+        h3 Customer Info
+      .panel-body
+        .form-group
+          = f.label :active, 'Active', class: 'col-xs-3 control-label'
+          .input-group.col-xs-7
+            = f.check_box :active, class: 'form-control'
+        .form-group
+          = f.label :first_name, 'First Name', class: 'col-xs-3 control-label'
+          .input-group.col-xs-7
+            span.input-group-addon
+              span.glyphicon.glyphicon-user
+            = f.text_field :first_name, placeholder: 'First Name', class: 'form-control'
+
+        .form-group
+          = f.label :last_name, 'Last Name', class: 'col-xs-3 control-label'
+          .input-group.col-xs-7
+            span.input-group-addon
+              span.glyphicon.glyphicon-user
+            = f.text_field :last_name, placeholder: 'Last Name', class: 'form-control'     
+
+        .form-group
+          = f.label :phone, 'Phone', class: 'col-xs-3 control-label'
+          .input-group.col-xs-7
+            span.input-group-addon
+              span.glyphicon.glyphicon-phone-alt
+            = f.text_field :phone, placeholder: 'Phone (Ex: 6158494949)', class: 'form-control'
+
+        .form-group
+          = f.label :email, 'Email', class: 'col-xs-3 control-label'
+          .input-group.col-xs-7
+            span.input-group-addon
+              span.icon-email
+            = f.text_field :email, placeholder: 'Email', class: 'form-control'    
+
+
+    .panel.panel-default
+      .panel-heading  
+        h3 Delivery Location
+      .panel-body
+        #gymDelivery
+          label Gym Delivery        
+          .form-group
+            = f.label :location, class: 'col-xs-3 control-label'
+            .input-group.col-xs-7
+              span.input-group-addon.select2-input-group-addon
+                span.glyphicon.glyphicon-home
+              = f.collection_select :location_id, Location.all, :id, :name, { prompt: 'Select a Location' }, { id: 'e2', class: 'form-control select2-custom' }
+          p
+          br
+
+        = f.label :delivery, id: 'selectCustomDelivery', class: 'checkbox-inline'
+          span.bold Custom Delivery
+          = f.check_box :delivery
+        p
+        br
+
+        #customDelivery
+          = f.fields_for :addresses do |a|
+            .form-group
+              = a.label :address1, 'Address 1', class: 'col-xs-3 control-label' 
+              .input-group.col-xs-7
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-home
+                  = a.text_field :address1, placeholder: 'Address 1', class: 'form-control'
+            
+            .form-group
+              = a.label :address2, 'Address 2', class: 'col-xs-3 control-label' 
+              .input-group.col-xs-7
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-home
+                  = a.text_field :address2, placeholder: 'Address 2', class: 'form-control'
+
+            .form-group
+              = a.label :zip, 'Zipcode', class: 'col-xs-3 control-label' 
+              .input-group.col-xs-7
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-home
+                  = a.text_field :zip, placeholder: 'Zipcode', class: 'form-control'
+
+    .panel.panel-default
+      .panel-heading  
+        .inline-heading
+          h3 Standard Order
+          input#selectStandardOrder type="checkbox"
+      #standardOrder.panel-body
+        = f.fields_for :standard_order do |so|
+          .form-group
+            = so.label :breakfast_qty, 'Breakfasts', class: 'col-xs-3 control-label' 
+            .input-group.col-xs-7
+                span.input-group-addon
+                  span.glyphicon.glyphicon-cutlery
+                = so.text_field :breakfast_qty, placeholder: 'Qty', class: 'form-control'
+
+          .form-group
+            = so.label :lunch_qty, 'Lunches', class: 'col-xs-3 control-label' 
+            .input-group.col-xs-7
+                span.input-group-addon
+                  span.glyphicon.glyphicon-cutlery
+                = so.text_field :lunch_qty, placeholder: 'Qty', class: 'form-control'
+
+          .form-group
+            = so.label :dinner_qty, 'Dinners', class: 'col-xs-3 control-label' 
+            .input-group.col-xs-7
+                span.input-group-addon
+                  span.glyphicon.glyphicon-cutlery
+                = so.text_field :dinner_qty, placeholder: 'Qty', class: 'form-control'
+
+          .form-group
+            = so.label :special_qty, 'Specials', class: 'col-xs-3 control-label' 
+            .input-group.col-xs-7
+                span.input-group-addon
+                  span.glyphicon.glyphicon-cutlery
+                = so.text_field :special_qty, placeholder: 'Qty', class: 'form-control'
+
+          .form-group
+            = so.label :notes, 'Delivery Instructions', class: 'col-xs-3 control-label'
+            .input-group.col-xs-7
+              = so.text_area :notes, placeholder: 'Place delivery instructions here...', class: 'form-control'
+
+          .form-group
+            = so.label :recurring, 'Recurring', class: 'col-xs-3 control-label'
+            .input-group.col-xs-7
+              = so.check_box :recurring, class: 'form-control'
+
+    .panel.panel-default
+      .panel-heading  
+        h3 Notes
+      .panel-body
+        .form-group
+          = f.label :notes, 'Private Comments', class: 'col-xs-3 control-label'
+          .input-group.col-xs-7
+            = f.text_area :notes, placeholder: 'Place private comments here...', class: 'form-control' 
+
+
+    .bottom-actions.pull-right
+      ul
+        li
+          = f.submit btn1, class: 'btn btn-info'
+        li
+          = f.submit btn2, class: 'btn btn-primary'
+
+
+.col-md-offset-2.col-lg-offset-2
+  .row
