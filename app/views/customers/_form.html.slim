@@ -5,10 +5,13 @@
       .panel-heading
         h3 Customer Info
       .panel-body
-        .form-group
-          = f.label :active, 'Active', class: 'col-xs-3 control-label'
-          .input-group.col-xs-7
-            = f.check_box :active, class: 'form-control'
+        - if edit
+          .form-group
+            = f.label :active, class: 'col-xs-3 control-label'
+            .col-xs-7.checkbox-div
+              .form-control
+                = f.check_box :active                  
+                span | Select 'active' status
         .form-group
           = f.label :first_name, 'First Name', class: 'col-xs-3 control-label'
           .input-group.col-xs-7
@@ -43,7 +46,9 @@
         h3 Delivery Location
       .panel-body
         #gymDelivery
-          label Gym Delivery        
+          .form-control-title.col-xs-10.col-xs-offset-1
+            .form-control.grey-bg
+              label Gym Delivery        
           .form-group
             = f.label :location, class: 'col-xs-3 control-label'
             .input-group.col-xs-7
@@ -53,11 +58,10 @@
           p
           br
 
-        = f.label :delivery, id: 'selectCustomDelivery', class: 'checkbox-inline'
-          span.bold Custom Delivery
-          = f.check_box :delivery
-        p
-        br
+        .form-control-title.col-xs-10.col-xs-offset-1
+          .form-control.grey-bg
+            = f.label :delivery, 'Custom Delivery'
+            = f.check_box :delivery, id: 'selectCustomDelivery'
 
         #customDelivery
           = f.fields_for :addresses do |a|
@@ -124,13 +128,17 @@
 
           .form-group
             = so.label :recurring, 'Recurring', class: 'col-xs-3 control-label'
-            .input-group.col-xs-7
-              = so.check_box :recurring, class: 'form-control'
+            .col-xs-7.checkbox-div
+              .form-control
+                = so.check_box :recurring                  
+                span | Set order to auto-renew
 
     .panel.panel-default
       .panel-heading  
-        h3 Notes
-      .panel-body
+        .inline-heading
+          h3 Comments
+          input#selectComments type="checkbox"
+      #comments.panel-body
         .form-group
           = f.label :notes, 'Private Comments', class: 'col-xs-3 control-label'
           .input-group.col-xs-7
