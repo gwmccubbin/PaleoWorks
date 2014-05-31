@@ -17,6 +17,9 @@ gem 'puma'
 gem 'rack-timeout'
 
 # User Gems
+gem 'angularjs-rails'
+gem 'angularjs-rails-resource', '~> 1.1.1'
+gem 'angular-ui-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'cancancan', '~> 1.7'
 gem 'devise'
