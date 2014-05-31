@@ -20,18 +20,6 @@ Customer.create([
   { first_name: 'Willy', last_name: 'Wonka', phone: '(999) 123-4567' }
 ])
 
-CustomerLocation.create([
-  { customer_id: 1, location_id: 1 },
-  { customer_id: 2, location_id: 3 },
-  { customer_id: 4, location_id: 2 },
-  { customer_id: 5, location_id: 4 },
-  { customer_id: 6, location_id: 5 },
-  { customer_id: 7, location_id: 3 },
-  { customer_id: 8, location_id: 3 },
-  { customer_id: 9, location_id: 3 },
-  { customer_id: 10, location_id: 3 },
-])
-
 Location.create([
   { name: 'CrossFit 615', phone: '(615) 580-5028'},
   { name: 'CrossFit Barefoot', phone: '(615) 617-9737'},
@@ -54,8 +42,8 @@ User.create([
 ])
 
 Role.create([
-  { name: 'Admin' },
-  { name: 'Staff' }
+  { name: 'admin' },
+  { name: 'staff' }
 ])
 
 UserRole.create([
