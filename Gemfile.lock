@@ -84,9 +84,12 @@ GEM
       pry (~> 0.9.10)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    puma (2.8.2)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack-timeout (0.0.4)
     rails (4.1.1)
       actionmailer (= 4.1.1)
       actionpack (= 4.1.1)
@@ -175,6 +178,8 @@ DEPENDENCIES
   pg
   pry-debugger
   pry-rails
+  puma
+  rack-timeout
   rails (= 4.1.1)
   rails_12factor
   rails_layout
