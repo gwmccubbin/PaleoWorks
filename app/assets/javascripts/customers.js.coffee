@@ -31,3 +31,15 @@ $(document).ready ->
       $('#standardOrder').find('input, textarea').attr('disabled', 'disabled')
 
     $('#standardOrder').slideToggle()
+
+  # Comments
+  $('#comments').hide()  
+  $('#comments').find('textarea').attr('disabled', 'disabled')
+
+  $('#selectComments').click ->
+    if $('#comments').is(':hidden')
+      $('#comments').find('textarea').removeAttr('disabled')
+    else
+      $('#comments').find('textarea').attr('disabled', 'disabled')
+
+    $('#comments').slideToggle()
