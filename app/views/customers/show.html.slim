@@ -33,11 +33,11 @@
             dt Delivery Type:
             dd = delivery_type @customer.delivery
 
-            - unless @customer.delivery
+            - if not @customer.delivery
               dt Gym Location:
-              dd = link_to "#{@customer.location.name}", location_path(@customer.location)
+              dd = link_to_if @customer.location, "#{@customer.location_name}", location_path(@customer.location)
 
-            - if @customer.delivery
+            - else
               dt Custom Delivery Address:
               dd
                 = @customer.address.address1 
