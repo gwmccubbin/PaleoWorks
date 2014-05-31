@@ -26,3 +26,4 @@ gem 'slim-rails'
 gem 'will_paginate-bootstrap'
 gem 'select2-rails'
 gem 'responders'
+gem 'rails_12factor', group: :production
