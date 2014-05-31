@@ -21,7 +21,7 @@
               = f.text_field :phone, placeholder: 'Phone (Eg. 6152340398)', class: 'form-control'
 
 
-        = fields_for :address do |a|
+        = f.fields_for :address do |a|
           .form-group
             = a.label 'Address 1', class: 'col-xs-2 control-label'
             .input-group.col-xs-8

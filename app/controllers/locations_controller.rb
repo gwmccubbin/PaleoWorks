@@ -7,12 +7,11 @@ class LocationsController < ApplicationController
   end
 
   def new
+    @location.build_address
   end
 
   def create
     @location = Location.new location_params
-    @location.address = Address.new
-    @location.address.attributes = address_params
 
     path = if params[:commit] == 'Save & Add New'
              new_location_path
@@ -44,11 +43,7 @@ class LocationsController < ApplicationController
   private
   
   def location_params
-    params.require(:location).permit(:name, :phone, :comments)
-  end
-
-  def address_params
-    params.require(:address).permit(:address1, :address2, :zip)
+    params.require(:location).permit(:name, :phone, :comments, address_attributes: [:address1, :address2, :zip])
   end
 
   def load_address
