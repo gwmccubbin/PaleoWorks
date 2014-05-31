@@ -13,14 +13,16 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new customer_params  
 
-    path = if params[:commit] == 'Save & Add New'
+    path = if params[:commit] == 'Save Customer'
+             root_path
+           elsif params[:commit] == 'Save & Add New'
              new_customer_path
            elsif params[:commit] == 'Add customer'
              customers_path
            end
 
     @customer.save
-    respond_with @customer, path: path
+    respond_with @customer, location: path
   end
 
   def show
