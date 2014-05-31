@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140529233810) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: true do |t|
     t.string   "address1"
     t.string   "address2"
@@ -35,13 +38,6 @@ ActiveRecord::Schema.define(version: 20140529233810) do
   create_table "customer_away_dates", force: true do |t|
     t.integer  "customer_id"
     t.integer  "away_date_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "customer_recurring_orders", force: true do |t|
-    t.integer  "customer_id"
-    t.integer  "recurring_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -119,25 +115,6 @@ ActiveRecord::Schema.define(version: 20140529233810) do
     t.text     "notes"
   end
 
-  create_table "recurring_order_menu_items", force: true do |t|
-    t.integer  "recurring_order_id"
-    t.integer  "menu_item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "recurring_orders", force: true do |t|
-    t.integer  "breakfast_qty",       default: 0
-    t.integer  "breakfast_lunch_qty", default: 0
-    t.integer  "lunch_qty",           default: 0
-    t.integer  "lunch_dinner_qty",    default: 0
-    t.integer  "dinner_qty",          default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "muffins_qty"
-    t.integer  "all_meals_qty"
-  end
-
   create_table "roles", force: true do |t|
     t.string   "name"
     t.boolean  "active",     default: true
@@ -181,7 +158,7 @@ ActiveRecord::Schema.define(version: 20140529233810) do
     t.string   "last_name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
