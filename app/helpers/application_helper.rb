@@ -14,4 +14,16 @@ module ApplicationHelper
         flash_type.to_s
     end
   end
+
+  def delivery_type(custom_delivery)
+    if custom_delivery == true
+      "Custom Delivery"
+    else
+      "Gym Delivery"
+    end
+  end
+
+  def human_boolean(boolean)
+    boolean ? 'Yes' : 'No'
+  end
 end

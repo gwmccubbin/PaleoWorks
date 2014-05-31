@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507164157) do
+ActiveRecord::Schema.define(version: 20140529233810) do
 
   create_table "addresses", force: true do |t|
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
-    t.string   "state",       default: "TN"
+    t.string   "state"
     t.string   "zip"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -39,13 +39,6 @@ ActiveRecord::Schema.define(version: 20140507164157) do
     t.datetime "updated_at"
   end
 
-  create_table "customer_locations", force: true do |t|
-    t.integer  "location_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "customer_id"
-  end
-
   create_table "customer_recurring_orders", force: true do |t|
     t.integer  "customer_id"
     t.integer  "recurring_order_id"
@@ -56,12 +49,29 @@ ActiveRecord::Schema.define(version: 20140507164157) do
   create_table "customers", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "active",     default: true
+    t.boolean  "active",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "delivery",   default: false
+    t.boolean  "delivery",    default: false
     t.string   "phone"
     t.string   "email"
+    t.integer  "location_id"
+    t.text     "notes"
+  end
+
+  create_table "item_types", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.decimal  "cost"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "item_type_id"
   end
 
   create_table "locations", force: true do |t|
@@ -69,14 +79,44 @@ ActiveRecord::Schema.define(version: 20140507164157) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone"
+    t.integer  "customer_id"
+    t.integer  "address_id"
+    t.text     "notes"
   end
 
   create_table "menu_items", force: true do |t|
-    t.string   "name"
-    t.string   "meal_type"
-    t.decimal  "price",      precision: 8, scale: 2
+    t.integer  "menu_id"
+    t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "menus", force: true do |t|
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "order_items", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "qty"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.datetime "delivery_date"
+    t.integer  "customer_id"
+    t.integer  "location_id"
+    t.boolean  "confirmed"
+    t.string   "token"
+    t.string   "challenge"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "notes"
   end
 
   create_table "recurring_order_menu_items", force: true do |t|
@@ -103,6 +143,18 @@ ActiveRecord::Schema.define(version: 20140507164157) do
     t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "standard_orders", force: true do |t|
+    t.integer  "breakfast_qty"
+    t.integer  "lunch_qty"
+    t.integer  "dinner_qty"
+    t.boolean  "recurring"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "notes"
+    t.integer  "special_qty"
+    t.integer  "customer_id"
   end
 
   create_table "user_roles", force: true do |t|

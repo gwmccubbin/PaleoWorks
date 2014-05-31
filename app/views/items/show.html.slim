@@ -1,27 +1,30 @@
 .show.item-show
-  h2 Item:  Item Name
-  .top-actions
-    =link_to "Edit Item", '#', class: 'btn btn-primary'
+  h2 = "Item: #{@item.name}"
   hr
 
+  .col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
+    .panel.panel-default
+      .panel-heading  
+          h3 Item Info
+      .panel-body
+        dl.dl-horizontal
+          dt Name:
+          dd
+            = @item.name
+          dt Cost:
+          dd
+            = number_to_currency @item.cost
+          dt Price:
+          dd
+            = number_to_currency @item.price
+          dt Type: 
+          dd
+            = @item.item_type.name
 
-  .panel.panel-default
-    .panel-heading  
-        h3 Item Info
-    .panel-body
-      p 
-        span.field-title
-          | Name: 
-        | Item Name
-      p 
-        span.field-title
-          | Price: 
-        | $6.92
-      p 
-        span.field-title
-          | Meal Type: 
-        | Breakfast
-      p 
-        span.field-title
-          | Menu Id: 
-        | None
+    .bottom-actions.pull-right
+      ul
+        li
+          =link_to "Edit Item", edit_item_path(@item), class: 'btn btn-primary'
+
+  .col-md-offset-2.col-lg-offset-2
+  .row

@@ -1,67 +1,8 @@
 .new.location-new
   .page-title
     h2.glyphicon.glyphicon-home
-    h2 New Delivery Location
+    h2 Add Delivery Location
+  
   hr
-  .col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
-    .panel.panel-default
-      .panel-heading
-        h3 Gym Info
-      .panel-body
-        table.panel-table
-          tbody
-            tr
-              td.left
-                label Name:
-              td.right
-                .input-group
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-user
-                  input.form-control placeholder="Gym Name" type="text" 
-            tr
-              td.left
-                label Phone:
-              td.right 
-                .input-group
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-phone-alt
-                  input.form-control placeholder="Phone (Eg. 6152340398)" type="text"           
-            tr
-              td.left
-                label Address 1:
-              td.right
-                .input-group
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-home
-                  input.form-control placeholder="Address 1" type="text" 
-            tr
-              td.left
-                label Address 2:
-              td.right
-                .input-group
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-home
-                  input.form-control placeholder="Address 2" type="text"
-            tr
-              td.left
-                label Zipcode:
-              td.right
-                .input-group
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-home
-                  input.form-control placeholder="Zipcdoe (Eg. 37216)" type="text"
-            tr
-              td.left
-                label Comments:
-              td.right
-                textarea.form-control placeholder="Place comments here..." type="text"
 
-    .bottom-actions.pull-right
-      ul
-        li    
-          .btn.btn-info.btn-lareg Save & Add New
-        li
-          buton.btn.btn-primary Add Location
-
-  .col-md-offset-2.col-lg-offset-2
-    .row
+  = render 'form'

@@ -6,14 +6,47 @@
 }
 
 // New Page
-.customer-new {
+.customer-new, .customer-edit {
+
+  .inline-heading {
+    input[type=checkbox] {
+      margin-left: 10px; 
+    }
+  }
 
   .panel-body{
+
+    .form-control-title {
+      padding-right: 6.33333%;
+      margin-bottom: 20px;
+
+      input[type=checkbox] {
+        margin-left: 10px;
+      }
+    }
+
+    .checkbox-div {
+      padding-left: 0px;
+      padding-right: 0px;
+
+      span {
+        color: #999;
+      }
+
+      input[type=checkbox] {
+        margin-right: 5px;
+      }
+    }
 
     .check-box {
       input[type=checkbox] {
         display: inline;
       }
+    }
+
+    textarea {
+      height: 100px;
+      border-radius: 4px !important;
     }
   }
 }

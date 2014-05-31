@@ -1,8 +1,9 @@
-.item-new {
+.item-new, .item-edit {
   
-  .panel-table {
-    input[type='radio'] {
-      margin: 4px 4px 0 0;
+  .radio-input {
+
+    [type=radio] {
+      margin-right: 10px;
     }
-  }  
+  }
 }

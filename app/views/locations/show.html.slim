@@ -1,32 +1,40 @@
 .show.location-show
-  .page-title
-    span.glyphicon.glyphicon-home
-    h2 Location:  Location Name
-
+  h2 = "Location: #{@location.name}"
   hr
 
+  .col-md-9.col-md-offset-1
+    .panel.panel-default
+      .panel-heading  
+          h3 Location Info
+      .panel-body
+        .col-md-10.col-md-offset-1
+          dl.dl-horizontal
+            dt Id:
+            dd
+               = @location.id
+            dt Name:
+            dd
+              = @location.name
+            dt address:
+            dd
+              = @address.address1 
+              br
+              - if @address.address2
+                = @address.address2
+                br
+              = "#{@address.city} , #{@address.state} #{@address.zip}"
+              br
+            dt # Customers:
+            dd
+              = @location.customers.count
+            dt Comments:
+            dd
+              = @location.notes
 
-  .panel.panel-default
-    .panel-heading  
-        h3 Location Info
-    .panel-body
-      p 
-        span.field-title
-          | Name: 
-        | Location Name
-      p 
-        span.field-title
-          | Phone: 
-        | (615) 234 - 2343      
-      p 
-        span.field-title
-          | Address: 
-        | 233 Quality Ln, Nashville TN 28238
-      p 
-        span.field-title
-          | Customers at Gym: 
-        | 28
-      p 
-        span.field-title
-          | Comments: 
-        | These are comments....
+    .bottom-actions.pull-right
+      ul
+        li
+          =link_to "Edit Location", edit_location_path(@location), class: 'btn btn-primary'
+
+  .col-md-offset-2
+  .row

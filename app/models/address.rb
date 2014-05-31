@@ -1,7 +1,7 @@
 class Address < ActiveRecord::Base
   belongs_to :customer
   belongs_to :location
-  validates_presence_of :address1, :city, :zip
+  validates_presence_of :address1, :zip
 
   def street
     "#{address1} #{address2}"    

@@ -1,5 +1,5 @@
 // Shared Styles
-.dashboard, .index, .new, .show, .edit {
+.dashboard, .modal, .index, .new, .show, .edit {
   min-height: 600px;
 
   .page-title {
@@ -75,9 +75,18 @@
       }
     }
   }
+
+  .grey-bg {
+    background-color: rgba(245, 245, 245, 0.5);
+  }
 }
 
+
 .index{
+
+  .page-body {
+    min-height: 407px;
+  }
 
   .table-actions {
     width: 120px;
@@ -88,6 +97,7 @@
 
     ul {
       list-style: none;
+      margin-bottom: 0px;
       padding-left: 0;
 
       li{
@@ -111,7 +121,21 @@
   }
 }
 
-.new {
+.show {
+  .dl-horizontal > dd:after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+
+  dl {
+    dt, dd {
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+.new, .edit {
   .input-icon {
     font-weight: bold;
   }
