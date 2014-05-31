@@ -10,13 +10,3 @@
         element.find('input, textarea').removeAttr('disabled')
 
     return
-
-@CustomersApp.animation '.hideable', () ->
-  return {
-  addClass: (element, done) ->
-    jQuery(element).slideUp('400', done)
-    return
-  removeClass: (element, done) ->
-    jQuery(element).slideDown('400', done)
-    return
-  }
