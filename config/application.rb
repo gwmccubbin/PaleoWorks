@@ -20,6 +20,6 @@ module PaleoWorks
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.version = '0.1.4'
+    config.version = '0.1.5'
   end
 end
