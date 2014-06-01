@@ -9,7 +9,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
-gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 # Server Gems
@@ -18,13 +17,18 @@ gem 'puma'
 gem 'rack-timeout'
 
 # User Gems
+gem 'angularjs-rails'
+gem 'angularjs-rails-resource', '~> 1.1.1'
+gem 'angular-ui-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'cancancan', '~> 1.7'
 gem 'devise'
+gem 'geocoder'
 gem 'pry-debugger'
 gem 'pry-rails'
 gem 'responders'
 gem 'select2-rails'
+gem 'simple_form', '~> 3.1.0.rc1'
 gem 'slim-rails'
 gem 'will_paginate-bootstrap'
 

@@ -1,157 +1,52 @@
-.col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
-  = form_for @customer, html: { class: 'form-horizontal' } do |f|         
+div ng-app="Customers"
+  div ng-controller="CustomerFormController"
+    .row
+      .col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
+        = simple_form_for @customer, wrapper: :custom_form do |f|
+          = default_panel 'Customer Info' do
+            - if edit
+              = f.input :active, hint: "Select 'active' status"
+            = f.input :first_name
+            = f.input :last_name
+            = phone_icon_input f, :phone, 'Phone (Ex: 6158494949)'
+            = email_icon_input f, :email, 'Email'
 
-    .panel.panel-default
-      .panel-heading
-        h3 Customer Info
-      .panel-body
-        - if edit
-          .form-group
-            = f.label :active, class: 'col-xs-3 control-label'
-            .col-xs-7.checkbox-div
-              .form-control
-                = f.check_box :active                  
-                span | Select 'active' status
-        .form-group
-          = f.label :first_name, 'First Name', class: 'col-xs-3 control-label'
-          .input-group.col-xs-7
-            span.input-group-addon
-              span.glyphicon.glyphicon-user
-            = f.text_field :first_name, placeholder: 'First Name', class: 'form-control'
+          = default_panel 'Delivery Location' do
+            #gymDelivery ng-hide="customDelivery"
+              = f.association :location, addon_html: { class: 'glyphicon glyphicon-home'}
 
-        .form-group
-          = f.label :last_name, 'Last Name', class: 'col-xs-3 control-label'
-          .input-group.col-xs-7
-            span.input-group-addon
-              span.glyphicon.glyphicon-user
-            = f.text_field :last_name, placeholder: 'Last Name', class: 'form-control'     
+            .form-control-title.col-xs-10.col-xs-offset-1
+              .form-control.grey-bg
+                = f.label :delivery, 'Custom Delivery'
+                = f.check_box :delivery, 'ng-model' => 'customDelivery', 'ng-init' => "customDelivery = #{@customer.delivery}"
 
-        .form-group
-          = f.label :phone, 'Phone', class: 'col-xs-3 control-label'
-          .input-group.col-xs-7
-            span.input-group-addon
-              span.glyphicon.glyphicon-phone-alt
-            = f.text_field :phone, placeholder: 'Phone (Ex: 6158494949)', class: 'form-control'
+            #customDelivery ng-hide="!customDelivery" disable-children="!customDelivery"
+              = f.simple_fields_for :addresses, @address do |a|
+                = home_icon_input a, :address1, 'Address 1'
+                = home_icon_input a, :address2, 'Address 2'
+                = home_icon_input a, :zip, 'Zip Code'
 
-        .form-group
-          = f.label :email, 'Email', class: 'col-xs-3 control-label'
-          .input-group.col-xs-7
-            span.input-group-addon
-              span.icon-email
-            = f.text_field :email, placeholder: 'Email', class: 'form-control'    
+          .panel.panel-default
+            .panel-heading
+              .inline-heading
+                h3 Standard Order
+                input#selectStandardOrder type="checkbox" ng-model="standardOrder" ng-init="standardOrder = #{@customer.standard_order.present?}"
+            #standardOrder.panel-body ng-hide="!standardOrder" disable_children="!standardOrder"
+              = f.simple_fields_for @standard_order do |so|
+                - [:breakfast, :lunch, :dinner, :special].each do |type|
+                  = cutlery_icon_input so, "#{type}_qty".to_sym, 'Quantity', label: type.to_s.capitalize.pluralize
 
+          .panel.panel-default
+            .panel-heading
+              .inline-heading
+                h3 Comments
+                input#selectComments type="checkbox" ng-model="notes" ng-init="notes = #{@customer.notes.present?}"
+            #comments.panel-body ng-hide="!notes" disable-children="!notes"
+              = f.input :notes, as: :text, addon_wrapper: false, label: 'Private Comments', placeholder: 'Place private comments here...'
 
-    .panel.panel-default
-      .panel-heading  
-        h3 Delivery Location
-      .panel-body
-        #gymDelivery
-          .form-control-title.col-xs-10.col-xs-offset-1
-            .form-control.grey-bg
-              label Gym Delivery        
-          .form-group
-            = f.label :location, class: 'col-xs-3 control-label'
-            .input-group.col-xs-7
-              span.input-group-addon.select2-input-group-addon
-                span.glyphicon.glyphicon-home
-              = f.collection_select :location_id, Location.all, :id, :name, { prompt: 'Select a Location' }, { id: 'e2', class: 'form-control select2-custom' }
-          p
-          br
-
-        .form-control-title.col-xs-10.col-xs-offset-1
-          .form-control.grey-bg
-            = f.label :delivery, 'Custom Delivery'
-            = f.check_box :delivery, id: 'selectCustomDelivery'
-
-        #customDelivery
-          = f.fields_for :addresses do |a|
-            .form-group
-              = a.label :address1, 'Address 1', class: 'col-xs-3 control-label' 
-              .input-group.col-xs-7
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-home
-                  = a.text_field :address1, placeholder: 'Address 1', class: 'form-control'
-            
-            .form-group
-              = a.label :address2, 'Address 2', class: 'col-xs-3 control-label' 
-              .input-group.col-xs-7
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-home
-                  = a.text_field :address2, placeholder: 'Address 2', class: 'form-control'
-
-            .form-group
-              = a.label :zip, 'Zipcode', class: 'col-xs-3 control-label' 
-              .input-group.col-xs-7
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-home
-                  = a.text_field :zip, placeholder: 'Zipcode', class: 'form-control'
-
-    .panel.panel-default
-      .panel-heading  
-        .inline-heading
-          h3 Standard Order
-          input#selectStandardOrder type="checkbox"
-      #standardOrder.panel-body
-        = f.fields_for :standard_order do |so|
-          .form-group
-            = so.label :breakfast_qty, 'Breakfasts', class: 'col-xs-3 control-label' 
-            .input-group.col-xs-7
-                span.input-group-addon
-                  span.glyphicon.glyphicon-cutlery
-                = so.text_field :breakfast_qty, placeholder: 'Qty', class: 'form-control'
-
-          .form-group
-            = so.label :lunch_qty, 'Lunches', class: 'col-xs-3 control-label' 
-            .input-group.col-xs-7
-                span.input-group-addon
-                  span.glyphicon.glyphicon-cutlery
-                = so.text_field :lunch_qty, placeholder: 'Qty', class: 'form-control'
-
-          .form-group
-            = so.label :dinner_qty, 'Dinners', class: 'col-xs-3 control-label' 
-            .input-group.col-xs-7
-                span.input-group-addon
-                  span.glyphicon.glyphicon-cutlery
-                = so.text_field :dinner_qty, placeholder: 'Qty', class: 'form-control'
-
-          .form-group
-            = so.label :special_qty, 'Specials', class: 'col-xs-3 control-label' 
-            .input-group.col-xs-7
-                span.input-group-addon
-                  span.glyphicon.glyphicon-cutlery
-                = so.text_field :special_qty, placeholder: 'Qty', class: 'form-control'
-
-          .form-group
-            = so.label :notes, 'Delivery Instructions', class: 'col-xs-3 control-label'
-            .input-group.col-xs-7
-              = so.text_area :notes, placeholder: 'Place delivery instructions here...', class: 'form-control'
-
-          .form-group
-            = so.label :recurring, 'Recurring', class: 'col-xs-3 control-label'
-            .col-xs-7.checkbox-div
-              .form-control
-                = so.check_box :recurring                  
-                span | Set order to auto-renew
-
-    .panel.panel-default
-      .panel-heading  
-        .inline-heading
-          h3 Comments
-          input#selectComments type="checkbox"
-      #comments.panel-body
-        .form-group
-          = f.label :notes, 'Private Comments', class: 'col-xs-3 control-label'
-          .input-group.col-xs-7
-            = f.text_area :notes, placeholder: 'Place private comments here...', class: 'form-control' 
-
-
-    .bottom-actions.pull-right
-      ul
-        li
-          = f.submit btn1, class: 'btn btn-info'
-        li
-          = f.submit btn2, class: 'btn btn-primary'
-
-
-.col-md-offset-2.col-lg-offset-2
-  .row
+          .bottom-actions.pull-right
+            ul
+              li
+                = f.submit btn1, class: 'btn btn-info'
+              li
+                = f.submit btn2, class: 'btn btn-primary'
