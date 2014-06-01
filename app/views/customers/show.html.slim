@@ -61,21 +61,7 @@
                   h3 Standard Order
                 dd
 
-              - unless @standard_order.breakfast_qty.nil?
-                dt Breakfasts:
-                dd = @standard_order.breakfast_qty
-
-              - unless @standard_order.lunch_qty.nil?
-                dt Lunches:
-                dd = @standard_order.lunch_qty
-
-              - unless @standard_order.dinner_qty.nil?
-                dt Dinners:
-                dd = @standard_order.dinner_qty
-
-              - unless @standard_order.special_qty.nil?
-                dt Specials:
-                dd = @standard_order.special_qty
+              = display_standard_order
 
               dt Notes:
               dd = @standard_order.notes

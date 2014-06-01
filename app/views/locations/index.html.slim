@@ -30,7 +30,7 @@
                 = link_to edit_location_path(location), title: 'Edit'
                   span.glyphicon.glyphicon-pencil
                 li
-                  = link_to location_path(location), title: 'Delete', method: 'delete', confirm: 'Are you sure you want to delete this location?'
+                  = link_to location_path(location), title: 'Delete', method: 'delete', data: { confirm: 'Are you sure you want to delete this location?' }
                     span.glyphicon.glyphicon-remove
   
   = render '/shared/pagination'

@@ -32,7 +32,7 @@
                         span.glyphicon.glyphicon-pencil
                       li
                         = link_to item_path(item), title: 'Delete', method: 'delete', 
-                                                   confirm: "Are you sure you want to delete #{item.name}?"
+                                                   data: { confirm: "Are you sure you want to delete #{item.name}?" }
                           span.glyphicon.glyphicon-remove
 
   = render '/shared/pagination'
