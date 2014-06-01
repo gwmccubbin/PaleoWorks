@@ -13,8 +13,8 @@ class Address < ActiveRecord::Base
     end
   end
 
-  before_validation :geocode
-  before_validation :reverse_geocode
+  after_validation :geocode
+  after_validation :reverse_geocode
 
   def street
     "#{address1} #{address2}"    
