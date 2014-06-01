@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   load_and_authorize_resource except: [:index]
-  before_filter :build_associations, only: [:new, :create, :edit, :update]
+  before_filter :build_associations, only: [:new, :edit]
 
   def index
     @customers = Customer.paginate(:page => params[:page], :per_page => 10)
@@ -21,7 +21,10 @@ class CustomersController < ApplicationController
              customers_path
            end
 
-    @customer.save
+    unless @customer.save
+      build_associations
+    end
+
     respond_with @customer, location: path
   end
 
@@ -43,7 +46,10 @@ class CustomersController < ApplicationController
              customer_path @customer
            end
 
-    @customer.save
+    unless @customer.save
+      build_associations
+    end
+
     respond_with @customer, location: path
   end
 
@@ -55,8 +61,8 @@ class CustomersController < ApplicationController
   private
 
   def build_associations
-    @customer.addresses.build unless @customer.addresses.any?
-    @customer.build_standard_order unless @customer.standard_order.present?
+    @address = @customer.address || @customer.addresses.build
+    @standard_order = @customer.standard_order || @customer.build_standard_order
   end
 
   def customer_params
