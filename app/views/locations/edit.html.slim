@@ -1,9 +1,8 @@
-.edit.location-edit
-  .page-title
-    span.glyphicon.glyphicon-home
-    h2 Edit Delivery Location: Location Name
-    
-  hr
-  
-  = render 'form'
+= provide :title, "Edit Delivery Location :: #{@location.name}"
 
+= page_for @location, action_name
+  = page_heading "Edit Delivery Location: #{@location.name}", 'home'
+
+  = page_content
+  
+    = render partial: 'form', locals: { btn1: 'Save & Continue' , btn2: 'Update Location' }

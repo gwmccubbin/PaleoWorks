@@ -1,36 +1,29 @@
-.index.locations-index
-  .page-title
-    span.glyphicon.glyphicon-home
-    h2.sub-header All Gym Locations
-  hr
-  .table-responsive
-    table.table.table-striped
-      thead
-        tr
-          th #
-          th Name
-          th Phone
-          th Street Address
-          th Total Customers
-          th Actions
-      tbody
-        - @locations.each do |location|
+= provide :title, 'All Delivery Locations'
+
+= page_for @location, action_name
+  = page_heading 'All Delivery Locations', 'home'
+
+  = page_content action: action_name
+
+    .table-responsive
+      table.table.table-striped
+        thead
           tr
-            td = location.id
-            td = link_to location.name, location_path(location)
-            td = location.phone
-            td = location.street_address if location.address.present?
-            td = location.customers.count       
-            td.table-actions
-              ul
-                li              
-                = link_to location_path(location), title: 'Info'
-                  span.glyphicon.glyphicon-eye-open
-                li 
-                = link_to edit_location_path(location), title: 'Edit'
-                  span.glyphicon.glyphicon-pencil
-                li
-                  = link_to location_path(location), title: 'Delete', method: 'delete', data: { confirm: 'Are you sure you want to delete this location?' }
-                    span.glyphicon.glyphicon-remove
-  
-  = render '/shared/pagination'
+            th #
+            th Name
+            th Phone
+            th Street Address
+            th Total Customers
+            th Actions
+        tbody
+          - @locations.each do |location|
+            tr
+              td = location.id
+              td = link_to location.name, location_path(location)
+              td = location.phone
+              td = location.street_address if location.address.present?
+              td = location.customers.count       
+              td.table-actions 
+                = table_actions location
+    
+    = render '/shared/pagination'
