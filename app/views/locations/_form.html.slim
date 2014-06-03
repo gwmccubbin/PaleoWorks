@@ -1,59 +1,14 @@
-.col-md-9.col-md-offset-1
+= simple_form_for @location, wrapper: :custom_form do |f|
 
-  = form_for @location, html: { class: 'form-horizontal' } do |f|
+  = default_panel 'Gym Info' do
+    = home_icon_input f, :name, 'Name'
+    = phone_icon_input f, :phone, 'Phone'
 
-    .panel.panel-default
-      .panel-heading
-        h3 Gym Info
+    = f.simple_fields_for :address do |a|
+      = home_icon_input a, :address1, 'Address 1'
+      = home_icon_input a, :address2, 'Address 2'
+      = home_icon_input a, :zip, 'Zipcode'
 
-      .panel-body
-        .form-group
-          = f.label 'Name', class: 'col-xs-2 control-label'
-          .input-group.col-xs-8
-              span.input-group-addon
-                span.glyphicon.glyphicon-home
-              = f.text_field :name, placeholder: 'Name', class: 'form-control'
-        .form-group
-          = f.label 'Phone', class: 'col-xs-2 control-label'
-          .input-group.col-xs-8
-              span.input-group-addon
-                span.glyphicon.glyphicon-phone-alt
-              = f.text_field :phone, placeholder: 'Phone (Eg. 6152340398)', class: 'form-control'
+    = f.input :notes, addon_wrapper: false
 
-
-        = f.fields_for :address do |a|
-          .form-group
-            = a.label 'Address 1', class: 'col-xs-2 control-label'
-            .input-group.col-xs-8
-                span.input-group-addon
-                  span.glyphicon.glyphicon-home
-                = a.text_field :address1, placeholder: 'Address 1', class: 'form-control'
-          .form-group
-            = a.label 'Address 2', class: 'col-xs-2 control-label'
-            .input-group.col-xs-8
-                span.input-group-addon
-                  span.glyphicon.glyphicon-home
-                = a.text_field :address2, placeholder: 'Address 2', class: 'form-control'
-          .form-group
-            = a.label 'Zipcode', class: 'col-xs-2 control-label'
-            .input-group.col-xs-8
-                span.input-group-addon
-                  span.glyphicon.glyphicon-home
-                = a.text_field :zip, placeholder: 'Zipcode (Eg. 37216)', class: 'form-control'
-
-
-        .form-group
-          = f.label :notes, 'Notes', class: 'col-xs-2 control-label'
-          .input-group.col-xs-8
-            = f.text_area :notes, placeholder: 'Place notes here...', class: 'form-control'
-
-
-    .bottom-actions.pull-right
-      ul
-        li    
-          = f.submit 'Save & Add New', class: 'btn btn-info' 
-        li
-          = f.submit 'Add Location', class: 'btn btn-primary' 
-  
-.col-md-offset-2
-  .row
+  = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'
