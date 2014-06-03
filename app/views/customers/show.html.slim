@@ -1,203 +1,65 @@
-.show.customer-show
-  .page-title
-    span.glyphicon.glyphicon-user
-    h2 Customer:  #{@customer.full_name} 
-    =link_to edit_customer_path(@customer), title: 'Edit'
-      span.glyphicon.glyphicon-pencil
+= provide :title, "Customer :: #{@customer.full_name}"
 
-  hr
+= page_for @customer, action_name
+  = page_heading "Customer: #{@customer.full_name}", 'user', object: @customer, action: action_name
+  
+  = page_content
+    
+    = default_panel 'Customer Info'
+      .col-md-10.col-md-offset-1
+        dl.dl-horizontal
+          dt Id:
+          dd = @customer.id
 
-  .col-md-9.col-md-offset-1
-    .panel.panel-default
-      .panel-heading  
-        h3 Customer Info
-      .panel-body
-        .col-md-10.col-md-offset-1
-          dl.dl-horizontal
-            dt Id:
-            dd = @customer.id
+          dt Active:
+          dd = human_boolean @customer.active
 
-            dt Active:
-            dd = human_boolean @customer.active
+          dt Name:
+          dd = @customer.full_name
+          
+          dt Phone:
+          dd = number_to_phone(@customer.phone)
+          
+          dt Email:
+          dd 
+            = @customer.email
+          
+          dt Delivery Type:
+          dd = delivery_type @customer.delivery
 
-            dt Name:
-            dd = @customer.full_name
-            
-            dt Phone:
-            dd = number_to_phone(@customer.phone)
-            
-            dt Email:
-            dd 
-              = @customer.email
-            
-            dt Delivery Type:
-            dd = delivery_type @customer.delivery
+          - if not @customer.delivery
+            dt Gym Location:
+            dd = link_to_if @customer.location, "#{@customer.location_name}", location_path(@customer.location)
 
-            - if not @customer.delivery
-              dt Gym Location:
-              dd = link_to_if @customer.location, "#{@customer.location_name}", location_path(@customer.location)
+          - else
+            dt Custom Delivery Address:
+            dd
+              = @customer.address.address1 
+              br
+              - if @customer.address.address2
+                = @customer.address.address2
+                br
+              = "#{@customer.address.city} , #{@customer.address.state} #{@customer.address.zip}"
+              br
+          
+          dt Private Comments:
+          dd = @customer.notes
 
-            - else
-              dt Custom Delivery Address:
+          dt Standard Order:
+          dd = human_boolean @standard_order.present?
+
+          -if @standard_order.present?
+            hr
+
+              dt 
+                h3 Standard Order
               dd
-                = @customer.address.address1 
-                br
-                - if @customer.address.address2
-                  = @customer.address.address2
-                  br
-                = "#{@customer.address.city} , #{@customer.address.state} #{@customer.address.zip}"
-                br
-            
-            dt Private Comments:
-            dd = @customer.notes
 
-            dt Standard Order:
-            dd = human_boolean @standard_order.present?
+            = display_standard_order
 
-            -if @standard_order.present?
-              hr
-              
-                dt 
-                  h3 Standard Order
-                dd
+            dt Notes:
+            dd = @standard_order.notes
 
-              = display_standard_order
+    = render 'orders'
 
-              dt Notes:
-              dd = @standard_order.notes
-
-
-      / .panel.panel-default
-      /   .panel-heading  
-      /     h3 All Orders
-      /   .panel-body
-      /     h4 Order # 23
-      /     .well.well-sm
-      /       table.panel-table
-      /         tbody
-      /           tr
-      /             td.left
-      /               label Order:
-      /             td.right #23
-      /           tr
-      /             td.left
-      /               label Date:
-      /             td.right 4/27/14
-      /           tr
-      /             td.left
-      /               label Type:
-      /             td.right Standard Recurring
-      /           tr
-      /             td.left
-      /               label Total:
-      /             td.right $34.39         
-      /       hr
-      /       h5 Line Items
-      /       table.table.table-striped
-      /         thead
-      /           th Item
-      /           th Type
-      /           th Unit Price
-      /           th Qty
-      /         tbody
-      /           tr
-      /             td Bacon 'n Eggs
-      /             td Breakfast
-      /             td $6.24
-      /             td 2
-      /           tr
-      /             td Chicken 'n Paleo Waffles
-      /             td Breakfast
-      /             td $7.82
-      /             td 2
-      /           tr
-      /             td Steak 'n Eggs
-      /             td Breakfast
-      /             td $5.14
-      /             td 2
-
-      /         table.panel-table
-      /           tbody
-      /             tr
-      /               td.left
-      /                label Subtotal: 
-      /               td.right $29.39
-      /             tr
-      /               td.left 
-      /                 label Tax: 
-      /               td.right $4.32
-      /             tr
-      /               td.left 
-      /                 label Total: 
-      /               td.right $34.39
-
-      /     h4 Order # 17
-      /     .well.well-sm
-      /       table.panel-table
-      /         tbody
-      /           tr
-      /             td.left
-      /               label Order:
-      /             td.right #17
-      /           tr
-      /             td.left
-      /               label Date:
-      /             td.right 4/17/14
-      /           tr
-      /             td.left
-      /               label Type:
-      /             td.right Standard Recurring
-      /           tr
-      /             td.left
-      /               label Total:
-      /             td.right $34.39         
-      /       hr
-      /       h5 Line Items
-      /       table.table.table-striped
-      /         thead
-      /           th Item
-      /           th Type
-      /           th Unit Price
-      /           th Qty
-      /         tbody
-      /           tr
-      /             td Bacon 'n Eggs
-      /             td Breakfast
-      /             td $6.24
-      /             td 2
-      /           tr
-      /             td Chicken 'n Paleo Waffles
-      /             td Breakfast
-      /             td $7.82
-      /             td 2
-      /           tr
-      /             td Steak 'n Eggs
-      /             td Breakfast
-      /             td $5.14
-      /             td 2
-
-      /       table.panel-table
-      /         tbody
-      /           tr
-      /             td.left
-      /              label Subtotal: 
-      /             td.right $29.39
-      /           tr
-      /             td.left `
-      /               label Tax: 
-      /             td.right $4.32
-      /           tr
-      /             td.left 
-      /               label Total: 
-      /             td.right $34.39
-
-    .bottom-actions.pull-right
-      ul
-        li
-          = link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-primary'
-
-  .col-md-offset-2.col-lg-offset-2
-    .row
-
-
-
+    = bottom_ctrl_buttons 'Edit Customer' => edit_customer_path(@customer)
