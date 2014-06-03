@@ -1,46 +1,8 @@
-.edit.item-edit
-  .page-title
-    span.glyphicon.glyphicon-cutlery
-    h2 = "Edit Item: #{@item.name}"
-  hr
-  .col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
-    = form_for @item, html: { class: 'form-horizontal', id: '#form' } do |f|  
+= provide :title, "Edit Menu Item :: #{@item.name}"
 
-      .panel.panel-default
-        .panel-heading
-          h3 Menu Item Info
-        .panel-body       
-            .form-group
+= page_for @item, 'edit'
+  = page_heading "Edit Menu Item: #{@item.name}", 'cutlery'
 
-              = f.label 'Item Name', class: 'col-xs-2 control-label'
-              .input-group.col-xs-8
-                  span.input-group-addon
-                    span.glyphicon.glyphicon-cutlery
-                  = f.text_field :name, placeholder: 'Item Name', class: 'form-control'
-
-            .form-group
-              = f.label 'Item Cost', class: 'col-xs-2 control-label'
-              .input-group.col-xs-8
-                  span.input-group-addon
-                    span.input-icon $ 
-                  = f.text_field :cost, placeholder: 'Cost (Eg. 6.99)', class: 'form-control'
-
-            .form-group
-              = f.label 'Item Price', class: 'col-xs-2 control-label'
-              .input-group.col-xs-8
-                  span.input-group-addon
-                    span.input-icon $ 
-                  = f.text_field :price, placeholder: 'Price (Eg. 6.99)', class: 'form-control'
-
-            .form-group
-              = f.label 'Meal Type', class: 'col-xs-2 control-label'
-              .controls.col-xs-8
-                - ItemType.all.each do |it|
-                  .radio-input
-                    = f.radio_button :item_type_id, it.id
-                    label = f.label :name, it.name
-
-      .bottom-actions.pull-right
-        ul
-          li
-            = f.submit 'Save Item', class: 'btn btn-primary'
+  = page_content
+  
+    = render partial: 'form', locals: { btn1: 'Save & Continue' , btn2: 'Update Item' }
