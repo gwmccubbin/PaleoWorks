@@ -3,6 +3,7 @@ class Location < ActiveRecord::Base
   has_many :customers
   has_many :orders
   accepts_nested_attributes_for :address
+  validates :name, presence: true
 
   def street_address
     if address.address2
