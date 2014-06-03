@@ -7,3 +7,12 @@
     content: '@'
   }
 }
+
+.icon-dollar {
+  font-weight: bold;
+  font-size: 18px;
+  
+  &:before {
+    content: '$'
+  }
+}

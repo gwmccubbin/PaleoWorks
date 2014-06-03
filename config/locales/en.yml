@@ -21,3 +21,21 @@
 
 en:
   hello: "Hello world"
+
+
+  activerecord:
+    attributes:
+      customer:
+        notes: "Private Comments"
+
+      item:
+        name: 'Item Name'
+
+      location:
+        notes: "Comments"
+
+      order:
+        notes: "Delivery Instructions"
+
+      standard_order:
+        notes: "Delivery Instructions"

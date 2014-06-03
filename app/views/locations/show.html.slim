@@ -1,40 +1,33 @@
-.show.location-show
-  h2 = "Location: #{@location.name}"
-  hr
+= provide :title, "Delivery Location :: #{@location.name}"
 
-  .col-md-9.col-md-offset-1
-    .panel.panel-default
-      .panel-heading  
-          h3 Location Info
-      .panel-body
-        .col-md-10.col-md-offset-1
-          dl.dl-horizontal
-            dt Id:
-            dd
-               = @location.id
-            dt Name:
-            dd
-              = @location.name
-            dt address:
-            dd
-              = @address.address1 
+= page_for @location, action_name
+  = page_heading "Delivery Location: #{@location.name}", 'home', object: @location, action: 'show'
+  
+  = page_content
+     
+    = default_panel 'Location Info'
+      .col-md-10.col-md-offset-1
+        dl.dl-horizontal
+          dt Id:
+          dd
+             = @location.id
+          dt Name:
+          dd
+            = @location.name
+          dt address:
+          dd
+            = @address.address1 
+            br
+            - if @address.address2
+              = @address.address2
               br
-              - if @address.address2
-                = @address.address2
-                br
-              = "#{@address.city} , #{@address.state} #{@address.zip}"
-              br
-            dt # Customers:
-            dd
-              = @location.customers.count
-            dt Comments:
-            dd
-              = @location.notes
+            = "#{@address.city} , #{@address.state} #{@address.zip}"
+            br
+          dt # Customers:
+          dd
+            = @location.customers.count
+          dt Comments:
+          dd
+            = @location.notes
 
-    .bottom-actions.pull-right
-      ul
-        li
-          =link_to "Edit Location", edit_location_path(@location), class: 'btn btn-primary'
-
-  .col-md-offset-2
-  .row
+    = bottom_ctrl_buttons 'Edit Location' => edit_location_path(@location)

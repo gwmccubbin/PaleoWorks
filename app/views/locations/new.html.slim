@@ -1,8 +1,8 @@
-.new.location-new
-  .page-title
-    h2.glyphicon.glyphicon-home
-    h2 Add Delivery Location
-  
-  hr
+= provide :title, 'Add Delivery Location'
 
-  = render 'form'
+= page_for @location, action_name
+  = page_heading 'Add Delivery Location', 'home'
+
+  = page_content
+  
+    = render partial: 'form', locals: { btn1: 'Save & Add New' , btn2: 'Add Location' }

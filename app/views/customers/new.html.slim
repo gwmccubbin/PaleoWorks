@@ -1,7 +1,8 @@
-.new.customer-new
-  .page-title
-    span.glyphicon.glyphicon-user
-    h2 Add Customer
-  hr
+= provide :title, 'Add Customer'
 
-  = render partial: 'form', locals: { btn1: 'Save & Add New' , btn2: 'Add Customer', edit: false }
+= page_for @customer, action_name
+  = page_heading 'Add Customer', 'user'
+
+  = page_content
+  
+    = render partial: 'form', locals: { btn1: 'Save & Add New' , btn2: 'Add Customer', action: action_name }

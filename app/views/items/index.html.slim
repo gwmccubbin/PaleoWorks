@@ -1,9 +1,10 @@
-.index.items-index
-  .page-title
-    span.glyphicon.glyphicon-cutlery
-    h2.sub-header All Menu Items
-  hr
-  .page-body
+= provide :title, 'All Menu Items'
+
+= page_for @item, action_name
+  = page_heading 'All Menu Items', 'cutlery'
+
+  = page_content action: action_name
+  
     .table-responsive
       table.table.table-striped
         thead
@@ -23,17 +24,7 @@
                   td = number_to_currency item.cost
                   td = number_to_currency item.price
                   td.table-actions
-                    ul
-                      li              
-                      = link_to item_path(item), title: 'Info'
-                        span.glyphicon.glyphicon-eye-open
-                      li 
-                      = link_to edit_item_path(item), title: 'Edit'
-                        span.glyphicon.glyphicon-pencil
-                      li
-                        = link_to item_path(item), title: 'Delete', method: 'delete', 
-                                                   data: { confirm: "Are you sure you want to delete #{item.name}?" }
-                          span.glyphicon.glyphicon-remove
+                    = table_actions item  
 
   = render '/shared/pagination'
 
