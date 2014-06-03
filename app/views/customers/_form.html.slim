@@ -1,52 +1,45 @@
 div ng-app="Customers"
   div ng-controller="CustomerFormController"
-    .row
-      .col-md-9.col-lg9.col-md-offset-1.col-lg-offset-1
-        = simple_form_for @customer, wrapper: :custom_form do |f|
-          = default_panel 'Customer Info' do
-            - if edit
-              = f.input :active, hint: "Select 'active' status"
-            = f.input :first_name
-            = f.input :last_name
-            = phone_icon_input f, :phone, 'Phone (Ex: 6158494949)'
-            = email_icon_input f, :email, 'Email'
+    = simple_form_for @customer, wrapper: :custom_form do |f|
+      = default_panel 'Customer Info' do
+        - if action == 'edit'
+          = f.input :active, hint: "Select 'active' status"
+        = f.input :first_name, placeholder: 'First Name'
+        = f.input :last_name, placeholder: 'Last Name'
+        = phone_icon_input f, :phone, 'Phone (Ex: 6158494949)'
+        = email_icon_input f, :email, 'Email'
 
-          = default_panel 'Delivery Location' do
-            #gymDelivery ng-hide="customDelivery"
-              = f.association :location, addon_html: { class: 'glyphicon glyphicon-home'}
+      = default_panel 'Delivery Location' do
+        #gymDelivery ng-hide="customDelivery"
+          = f.association :location, addon_html: { class: 'glyphicon glyphicon-home'}
 
-            .form-control-title.col-xs-10.col-xs-offset-1
-              .form-control.grey-bg
-                = f.label :delivery, 'Custom Delivery'
-                = f.check_box :delivery, 'ng-model' => 'customDelivery', 'ng-init' => "customDelivery = #{@customer.delivery}"
+        .form-control-title.col-xs-10.col-xs-offset-1
+          .form-control.grey-bg
+            = f.label :delivery, 'Custom Delivery'
+            = f.check_box :delivery, 'ng-model' => 'customDelivery', 'ng-init' => "customDelivery = #{@customer.delivery}"
 
-            #customDelivery ng-hide="!customDelivery" disable-children="!customDelivery"
-              = f.simple_fields_for :addresses, @address do |a|
-                = home_icon_input a, :address1, 'Address 1'
-                = home_icon_input a, :address2, 'Address 2'
-                = home_icon_input a, :zip, 'Zip Code'
+        #customDelivery ng-hide="!customDelivery" disable-children="!customDelivery"
+          = f.simple_fields_for :addresses, @address do |a|
+            = home_icon_input a, :address1, 'Address 1'
+            = home_icon_input a, :address2, 'Address 2'
+            = home_icon_input a, :zip, 'Zip Code'
 
-          .panel.panel-default
-            .panel-heading
-              .inline-heading
-                h3 Standard Order
-                input#selectStandardOrder type="checkbox" ng-model="standardOrder" ng-init="standardOrder = #{@customer.standard_order.present?}"
-            #standardOrder.panel-body ng-hide="!standardOrder" disable_children="!standardOrder"
-              = f.simple_fields_for @standard_order do |so|
-                - [:breakfast, :lunch, :dinner, :special].each do |type|
-                  = cutlery_icon_input so, "#{type}_qty".to_sym, 'Quantity', label: type.to_s.capitalize.pluralize
+      .panel.panel-default
+        .panel-heading
+          .inline-heading
+            h3 Standard Order
+            input type="checkbox" ng-model="standardOrder" ng-init="standardOrder = #{@customer.standard_order.present?}"
+        .panel-body ng-hide="!standardOrder" disable_children="!standardOrder"
+          = f.simple_fields_for @standard_order do |so|
+            - [:breakfast, :lunch, :dinner, :special].each do |type|
+              = cutlery_icon_input so, "#{type}_qty".to_sym, 'Quantity', label: type.to_s.capitalize.pluralize
 
-          .panel.panel-default
-            .panel-heading
-              .inline-heading
-                h3 Comments
-                input#selectComments type="checkbox" ng-model="notes" ng-init="notes = #{@customer.notes.present?}"
-            #comments.panel-body ng-hide="!notes" disable-children="!notes"
-              = f.input :notes, as: :text, addon_wrapper: false, label: 'Private Comments', placeholder: 'Place private comments here...'
+      .panel.panel-default
+        .panel-heading
+          .inline-heading
+            h3 Comments
+            input type="checkbox" ng-model="notes" ng-init="notes = #{@customer.notes.present?}"
+        .panel-body ng-hide="!notes" disable-children="!notes"
+          = f.input :notes, as: :text, addon_wrapper: false, label: 'Private Comments', placeholder: 'Place private comments here...'
 
-          .bottom-actions.pull-right
-            ul
-              li
-                = f.submit btn1, class: 'btn btn-info'
-              li
-                = f.submit btn2, class: 'btn btn-primary'
+      = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'
