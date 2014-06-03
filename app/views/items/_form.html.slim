@@ -1,0 +1,9 @@
+= simple_form_for @item, url: items_path do |f|  
+
+  = default_panel 'Menu Item Info' do
+    = f.input :name, placeholder: 'Item Name'
+    = dollar_icon_input f, :cost, 'Cost (Eg. 6.99)'
+    = dollar_icon_input f, :price, 'Price (Eg. 6.99)'
+    = f.association :item_type, as: :radio_buttons, wrapper: :horizontal_radio_and_checkboxes
+
+  = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'
