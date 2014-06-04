@@ -26,17 +26,9 @@
               td = link_to "#{customer.last_name}", customer_path(customer)
               td = number_to_phone customer.phone, area_code: true
               td = customer.location.name if customer.location_id
-              td 
-                - if customer.delivery
-                  span.green.glyphicon.glyphicon-ok
-              td
-                - if customer.standard_order.present?
-                  span.green.glyphicon.glyphicon-ok
-              td
-                - if customer.active
-                  span.green.glyphicon.glyphicon-ok
-                - else
-                  span.red.glyphicon.glyphicon-remove
+              td = icon_true? customer.delivery
+              td = icon_true? customer.standard_order.present?
+              td = icon_boolean customer.active
 
               td.table-actions
                 = table_actions customer
