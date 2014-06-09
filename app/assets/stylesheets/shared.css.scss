@@ -76,6 +76,29 @@
     }
   }
 
+  .panel-container {
+    margin: 0 auto 30px auto;
+  }
+
+  @media(min-width:768px){
+    .panel-container {
+      width: 414px;
+    }
+  }
+
+  @media(min-width:992px){
+    .panel-container {
+      width: 433px;
+    }
+  }
+
+  @media(min-width:1200px){
+    .panel-container {
+      width: 542px;
+    }
+  }
+
+
   .grey-bg {
     background-color: rgba(245, 245, 245, 0.5);
   }
