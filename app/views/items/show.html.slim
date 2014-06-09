@@ -1,7 +1,7 @@
 = provide :title, "Menu Item :: #{@item.name}"
 
 = page_for @item, action_name
-  = page_heading "Menu Item: #{@item.name}", 'cutlery', object: @item, action: action_name
+  = page_heading "Menu Item :: #{@item.name}", 'cutlery', object: @item, action: action_name
 
   = page_content
   
@@ -20,4 +20,4 @@
         dd
           = @item.item_type.name
 
-    = bottom_ctrl_buttons 'Edit Item' => edit_item_path(@item)
+    = bottom_buttons 'Edit Item' => edit_item_path(@item)

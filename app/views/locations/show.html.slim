@@ -1,7 +1,7 @@
 = provide :title, "Delivery Location :: #{@location.name}"
 
 = page_for @location, action_name
-  = page_heading "Delivery Location: #{@location.name}", 'home', object: @location, action: 'show'
+  = page_heading "Delivery Location :: #{@location.name}", 'home', object: @location, action: 'show'
   
   = page_content
      
@@ -30,4 +30,4 @@
           dd
             = @location.notes
 
-    = bottom_ctrl_buttons 'Edit Location' => edit_location_path(@location)
+    = bottom_buttons 'Edit Location' => edit_location_path(@location)
