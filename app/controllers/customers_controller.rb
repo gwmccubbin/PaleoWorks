@@ -17,7 +17,7 @@ class CustomersController < ApplicationController
              root_path
            elsif params[:commit] == 'Save & Add New'
              new_customer_path
-           elsif params[:commit] == 'Add customer'
+           else
              customers_path
            end
 
