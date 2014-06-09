@@ -120,7 +120,7 @@ module ApplicationHelper
     end
   end
 
-  def bottom_ctrl_buttons(button_names_hash)
+  def bottom_buttons(button_names_hash)
     content_tag :div, class: 'bottom-actions pull-right' do 
       content = content_tag :ul do      
         button_names_hash.collect do |btn_name, path| 
