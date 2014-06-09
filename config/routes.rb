@@ -13,4 +13,5 @@ PaleoWorks::Application.routes.draw do
   resources :items
   resources :locations
   resources :menus
+  resources :orders
 end
