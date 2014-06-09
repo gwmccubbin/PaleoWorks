@@ -59,7 +59,7 @@ module ApplicationHelper
       
       c += link_to_if(options[:action] == 'show', 
                       content_tag(:span, nil, class: 'glyphicon glyphicon-pencil'), 
-                      link_options(object_controller(options[:object]), options[:action], id: options[:object])
+                      link_options(object_controller(options[:object]), 'edit', id: options[:object])
                       ) { }
     end
 
@@ -97,13 +97,13 @@ module ApplicationHelper
   end
 
   def link_options(controller, action, object)
-    { controller: controller, action: action, id: object }
+    { controller: controller, action: action, id: object[:id] }
   end
 
   def delete_link_options(object, action)
     delete_args = { method: 'delete', data: { confirm: "Are you sure you want to delete #{object_name(object)}?" } }
 
-    action == 'destroy' ? delete_args :  {}
+    action == 'destroy' ? delete_args :  { }
   end
 
   def table_actions(object)
