@@ -6,4 +6,7 @@ class Item < ActiveRecord::Base
   has_many :menus, through: :menu_items
   validates_numericality_of :cost, :price
   validates_presence_of :name, :price, :item_type_id
+  scope :breakfasts, -> { where(item_type_id: ItemType.breakfast_id) }
+  scope :lunches, -> { where(item_type_id: ItemType.lunch_id) }
+  scope :dinners, -> { where(item_type_id: ItemType.dinner_id) }
 end
