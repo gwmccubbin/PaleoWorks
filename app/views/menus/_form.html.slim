@@ -1,0 +1,16 @@
+= simple_form_for @menu, wrapper: :custom_form  do |f|
+
+  = default_panel 'Menu Info'
+    
+    = f.input :name, placeholder: 'Menu Name'
+    = f.association :items, label: 'Breakfasts', collection: Item.breakfasts, include_hidden: false, 
+                    input_html: { class: 'itemSelect2' }, multiple: true, 
+                    addon_html: { class: 'glyphicon glyphicon-cutlery' }
+    = f.association :items, label: 'Lunches', collection: Item.lunches, include_hidden: false, 
+                    input_html: { class: 'itemSelect2' }, multiple: true, 
+                    addon_html: { class: 'glyphicon glyphicon-cutlery' }
+    = f.association :items, label: 'Dinners', collection: Item.dinners, include_hidden: false, 
+                    input_html: { class: 'itemSelect2' }, multiple: true, 
+                    addon_html: { class: 'glyphicon glyphicon-cutlery' }
+
+  = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'

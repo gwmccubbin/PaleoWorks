@@ -1,0 +1,36 @@
+= provide :title, "Menu :: \"#{@menu.name}\""
+
+= page_for @customer, action_name
+  = page_heading "Menu :: \"#{@menu.name}\"", 'list', object: @menu, action: action_name
+  
+  = page_content
+
+    = default_panel 'Menu Info'
+      .panel-container
+        dl.dl-horizontal
+          dt Name:
+          dd = @menu.name
+
+          dt Current:
+          dd = icon_boolean(2 == 3)
+
+        hr
+
+        - [:breakfasts, :lunches, :dinners].each do |type|
+          .form-group
+            .form-control.grey-bg
+              span.bold = "#{type.capitalize}"
+          table.table.table-responsive
+            thead            
+              tr
+                th Name
+                th Cost
+                th Price
+            tbody
+              - @menu.items.send("#{type}".to_sym).each do |t|
+                tr
+                  td = link_to "#{t.name}", item_path(t)
+                  td = number_to_currency t.cost
+                  td = number_to_currency t.price
+
+    = bottom_buttons 'Edit Menu' => edit_menu_path(@menu)

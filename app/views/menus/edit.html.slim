@@ -1,0 +1,8 @@
+= provide :title, "Edit Menu: #{@menu.name}"
+
+= page_for @menu, action_name
+  = page_heading "Edit Menu: #{@menu.name}", 'list'
+
+  = page_content
+  
+    = render partial: 'form', locals: { btn1: 'Save & Continue' , btn2: 'Update Menu', action: action_name } 
