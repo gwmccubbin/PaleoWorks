@@ -12,6 +12,8 @@ class Customer < ActiveRecord::Base
 
   delegate :name, to: :location, prefix: true, allow_nil: true
 
+  scope :active, -> { where(active: true) }
+
   def full_name
     "#{first_name} #{last_name}"
   end
