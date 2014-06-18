@@ -4,9 +4,9 @@ class Menu < ActiveRecord::Base
   accepts_nested_attributes_for :menu_items
   validates :name, presence: true
 
-  scope :current, -> { where('start_date < ?', Time.now).where('end_date > ?', Time.now) }
+  scope :current, -> { where('start_date <= :date AND end_date >= :date', date: Date.today) }
 
   def current?
-    Menu.current.include?(self)
+    start_date <= Date.today and end_date >= Date.today
   end
 end
