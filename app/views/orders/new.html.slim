@@ -1,0 +1,9 @@
+- title = "New Order"
+
+= provide :title, title
+
+= page_for @order, action_name do
+  = page_heading title, 'list-alt', object: @order, action: action_name
+
+  = page_content do
+    = render partial: 'form', locals: { btn1: 'Save & Add New' , btn2: 'Add Order', action: action_name }
