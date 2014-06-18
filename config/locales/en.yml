@@ -39,3 +39,6 @@ en:
 
       standard_order:
         notes: "Delivery Instructions"
+
+      order_item:
+        qty: "Quantity"
