@@ -1,3 +1,98 @@
 // Place all the styles related to the Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$order-items-lg-width: 669px;
+$item-lg-width: 450px;
+$quantity-lg-width: 120px;
+$price-lg-width: 120px;
+$remove-lg-width: 100px;
+
+
+.order-form {
+  
+  .panel-body {
+
+    > .row {
+      margin-bottom: 10px;    
+    }
+
+    .row {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+
+
+  table {
+
+     td {
+      height: 39px;
+
+      &:nth-child(4) {
+
+        input {
+          margin-left: 25%;
+        }
+      }
+    }
+  }
+
+
+  @media(min-width:992px) {
+
+    .row {
+      width: $order-items-lg-width * 0.83;
+    }
+
+    table {
+      
+      td {
+        &:nth-child(1) {
+          width: $item-lg-width * 0.83;
+        }
+
+        &:nth-child(2) {
+          width: $quantity-lg-width * 0.83;
+        }
+
+        &:nth-child(3) {
+          width: $price-lg-width * 0.83;
+        } 
+
+        &:nth-child(4) {
+          width: $remove-lg-width * 0.83;
+        }
+      }
+    }
+  }
+
+  @media(min-width:1200px) {
+    
+    .row {
+      width: $order-items-lg-width;
+    }
+
+    table {
+      
+      td {
+        &:nth-child(1) {
+          width: $item-lg-width;
+        }
+
+        &:nth-child(2) {
+          width: $quantity-lg-width;
+        }
+
+        &:nth-child(3) {
+          width: $price-lg-width;
+        } 
+
+        &:nth-child(4) {
+          width: $remove-lg-width;
+        }
+      }
+    }
+  }
+}

@@ -1,32 +1,34 @@
-div ng-app="Orders"
+div.order-form ng-app="Orders"
   div ng-controller="OrderFormController" ng-init="initialize(#{@order.id})"
     = simple_form_for @order do |f|
       = f.association :customer, label_method: :full_name
-      /= f.simple_fields_for :order_items do |o|
-      /  = o.association :item
-      /  = o.input :qty
-      /  = o.input :price, input_html: { value: o.object.price || o.object.item_price }
+        = default_panel 'Order Info' do
+          .row.order-items
+            .col-sm-12
+              .form-control ng-show="!checkOrderItemsPresent()"
+                span.bold Start Adding Items to the order
 
-      table
-        thead
-          tr
-            th Item
-            th Quantity
-            th Price
-            th Remove?
-        tbody
-          tr ng-repeat="orderItem in orderItems"
-            td
-              input.form-control id="order_items_attributes_{{$index}}_id" name="order[order_items_attributes][{{$index}}][id]" type="hidden" value="{{orderItem.id}}"
-              select.form-control ng-model="orderItem.itemId" ng-options="item.id as item.name for item in items"
-              input id="order_items_attributes_{{$index}}_item_id" name="order[order_items_attributes][{{$index}}][item_id]" type="hidden" value="{{orderItem.itemId}}"
-            td
-              input.form-control id="order_items_attributes_{{$index}}_qty" name="order[order_items_attributes][{{$index}}][qty]" ng-model="orderItem.qty"
-            td
-              input.form-control id="order_items_attributes_{{$index}}_price" name="order[order_items_attributes][{{$index}}][price]" ng-model="orderItem.price"
-            td
-              input.form-control id="order_items_attributes_{{$index}}_destroy" name="order[order_items_attributes][{{$index}}][_destroy]" type="checkbox" ng-model="orderItem._destroy"
-      a ng-click="addOrderItem()" href="" Add Order Item
+              table.table-no-border ng-show="checkOrderItemsPresent()"
+                thead
+                  tr
+                    th Item
+                    th Quantity
+                    th Price
+                    th Remove?
+                tbody
+                  tr ng-repeat="orderItem in orderItems"
+                    td
+                      input id="order_items_attributes_{{$index}}_id" name="order[order_items_attributes][{{$index}}][id]" type="hidden" value="{{orderItem.id}}"
+                      select.form-control.orderSelect2 ng-model="orderItem.itemId" ng-options="item.id as item.name for item in items"
+                      input id="order_items_attributes_{{$index}}_item_id" name="order[order_items_attributes][{{$index}}][item_id]" type="hidden" value="{{orderItem.itemId}}"
+                    td
+                      input.form-control id="order_items_attributes_{{$index}}_qty" name="order[order_items_attributes][{{$index}}][qty]" ng-model="orderItem.qty"
+                    td
+                      input.form-control id="order_items_attributes_{{$index}}_price" name="order[order_items_attributes][{{$index}}][price]" ng-model="orderItem.price"
+                    td
+                      input id="order_items_attributes_{{$index}}_destroy" name="order[order_items_attributes][{{$index}}][_destroy]" type="checkbox" ng-model="orderItem._destroy"
+          .row.order-items
+            .col-sm-12
+              a ng-click="addOrderItem()" href="" Add Order Item
 
       = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'
-
