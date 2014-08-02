@@ -34,9 +34,9 @@
           - else
             dt Custom Delivery Address:
             dd
-              = @customer.address.address1 
+              = @customer.address.address1
               br
-              - if @customer.address.address2
+              - if @customer.address.address2.present?
                 = @customer.address.address2
                 br
               = "#{@customer.address.city} , #{@customer.address.state} #{@customer.address.zip}"
