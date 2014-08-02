@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   before_filter :build_associations, only: [:new, :edit]
 
   def index
-    @customers = Customer.paginate(:page => params[:page], :per_page => 10)
+    @customers = Customer.order('last_name ASC').paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
