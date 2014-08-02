@@ -17,4 +17,6 @@
 //= require select2
 //= require angular
 //= require angularjs/rails/resource
+//= require angular-ui-bootstrap
+//= require angular-ui-bootstrap-tpls
 //= require_tree .
