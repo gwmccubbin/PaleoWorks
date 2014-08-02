@@ -1,3 +1,6 @@
+$(document).ready ->
+  $('.orderSelect2').select2()
+
 @OrdersApp = angular.module 'Orders', ['ui.select2', 'rails']
 @OrdersApp.controller 'OrderFormController', ($scope, Item, Order, OrderItem) ->
   $scope.orderItems = []
@@ -8,6 +11,9 @@
 
   $scope.addOrderItem = () ->
     $scope.orderItems.push(new OrderItem())
+
+  $scope.checkOrderItemsPresent = () ->
+    $scope.orderItems.length >= 1
 
 
 @OrdersApp.factory 'Order', (railsResourceFactory) ->

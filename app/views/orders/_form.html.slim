@@ -8,25 +8,30 @@ div.order-form ng-app="Orders"
               .form-control ng-show="!checkOrderItemsPresent()"
                 span.bold Start Adding Items to the order
 
-              table.table-no-border ng-show="checkOrderItemsPresent()"
-                thead
-                  tr
-                    th Item
-                    th Quantity
-                    th Price
-                    th Remove?
-                tbody
-                  tr ng-repeat="orderItem in orderItems"
-                    td
-                      input id="order_items_attributes_{{$index}}_id" name="order[order_items_attributes][{{$index}}][id]" type="hidden" value="{{orderItem.id}}"
-                      select.form-control.orderSelect2 ng-model="orderItem.itemId" ng-options="item.id as item.name for item in items"
-                      input id="order_items_attributes_{{$index}}_item_id" name="order[order_items_attributes][{{$index}}][item_id]" type="hidden" value="{{orderItem.itemId}}"
-                    td
-                      input.form-control id="order_items_attributes_{{$index}}_qty" name="order[order_items_attributes][{{$index}}][qty]" ng-model="orderItem.qty"
-                    td
-                      input.form-control id="order_items_attributes_{{$index}}_price" name="order[order_items_attributes][{{$index}}][price]" ng-model="orderItem.price"
-                    td
-                      input id="order_items_attributes_{{$index}}_destroy" name="order[order_items_attributes][{{$index}}][_destroy]" type="checkbox" ng-model="orderItem._destroy"
+              .line-items ng-show="checkOrderItemsPresent()"
+                .row
+                  .col-xs-6
+                    label Item
+                  .col-xs-2
+                    label.hidden-xs Quantity
+                    label.visible-xs Qty
+                  .col-xs-2
+                    label.hidden-xs Price
+                    label.visible-xs $
+                  .col-xs-1.delete
+                    label.hidden-xs Remove?
+                    label.visible-xs Del
+                .row.line-item ng-repeat="orderItem in orderItems"
+                  .col-xs-6
+                    input id="order_items_attributes_{{$index}}_id" name="order[order_items_attributes][{{$index}}][id]" type="hidden" value="{{orderItem.id}}"
+                    select.form-control.orderSelect2 ng-model="orderItem.itemId" ng-options="item.id as item.name for item in items"
+                    input id="order_items_attributes_{{$index}}_item_id" name="order[order_items_attributes][{{$index}}][item_id]" type="hidden" value="{{orderItem.itemId}}"
+                  .col-xs-2
+                    input.form-control id="order_items_attributes_{{$index}}_qty" name="order[order_items_attributes][{{$index}}][qty]" ng-model="orderItem.qty"
+                  .col-xs-2
+                    input.form-control id="order_items_attributes_{{$index}}_price" name="order[order_items_attributes][{{$index}}][price]" ng-model="orderItem.price"
+                  .col-xs-1.delete
+                    input id="order_items_attributes_{{$index}}_destroy" name="order[order_items_attributes][{{$index}}][_destroy]" type="checkbox" ng-model="orderItem._destroy"
           .row.order-items
             .col-sm-12
               a ng-click="addOrderItem()" href="" Add Order Item
