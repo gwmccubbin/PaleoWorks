@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :order_items, allow_destroy: true
 
-  delegate :delivery_address, :delivery_location_name, to: :customer, prefix: true, allow_nil: true
+  delegate :name, :delivery_address, :delivery_location_name, to: :customer, prefix: true, allow_nil: true
 
 
   private
