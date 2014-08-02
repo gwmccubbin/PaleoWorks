@@ -1,1 +1,31 @@
-h2 Orders Index
+-title = 'All Orders'
+= provide :title, title
+
+= page_for @orders, action_name
+  = page_heading title, 'menu'
+
+  = page_content action: action_name
+  
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th #
+            th Customer
+            th Delivery Date
+            th Delivery Location
+            th Confirmed
+            th Actions
+        tbody
+          - @orders.each do |order|
+            tr
+              td = link_to order.id, order
+              td = link_to order.customer_name, customer_path(order.customer)
+              td = order.delivery_date.strftime('%m/%d/%Y')
+              td = order.customer_delivery_location_name
+              td = icon_true? order.confirmed
+
+              td.table-actions
+                = table_actions order
+  
+  = render '/shared/pagination'
