@@ -8,12 +8,44 @@ $(document).ready ->
     Item.query().then (items) -> $scope.items = items
     OrderItem.query(null, {orderId: id}).then (orderItems) ->
       $scope.orderItems = orderItems
+    $scope.dateObject = Date.future('Monday')
 
   $scope.addOrderItem = () ->
     $scope.orderItems.push(new OrderItem())
 
   $scope.checkOrderItemsPresent = () ->
     $scope.orderItems.length >= 1
+
+  $scope.updatePrice = (orderItem) ->
+    Item.get(orderItem.itemId).then (item) ->
+      orderItem.price = item.price
+
+  $scope.today = ->
+    $scope.dateObject = new Date()
+
+  $scope.clear = ->
+    $scope.dateObject = null
+
+  $scope.toggleMin = () ->
+    $scope.minDate = $scope.minDate ? null : new Date();
+
+
+  $scope.open = ($event) ->
+    $event.preventDefault()
+    $event.stopPropagation()
+
+    $scope.opened = true;
+
+  $scope.minDate = new Date();
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1
+  }
+
+  $scope.initDate = new Date('2016-15-20')
+  $scope.format = 'EEEE, MMMM dd, yyyy'
+
 
 
 @OrdersApp.factory 'Order', (railsResourceFactory) ->
