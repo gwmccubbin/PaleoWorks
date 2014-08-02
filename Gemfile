@@ -3,7 +3,6 @@ ruby '2.0.0'
 
 # Rails Gems
 gem 'rails', '4.1.1'
-
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -12,7 +11,6 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 
 # Server Gems
-
 gem 'puma'
 gem 'rack-timeout'
 
@@ -30,6 +28,7 @@ gem 'responders'
 gem 'select2-rails'
 gem 'simple_form', '~> 3.1.0.rc1'
 gem 'slim-rails'
+gem 'sugar-rails'
 gem 'will_paginate-bootstrap'
 
 group :development do
