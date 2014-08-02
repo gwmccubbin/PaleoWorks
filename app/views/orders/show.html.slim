@@ -1,1 +1,58 @@
-h3 Order Show Page
+= provide :title, "Order # #{@order.id}"
+
+= page_for @order, action_name
+  = page_heading "Order # #{@order.id}", 'menu', object: @order, action: action_name
+  
+  = page_content
+    
+    = default_panel 'Order Info'
+      .col-md-10.col-md-offset-1
+        dl.dl-horizontal
+          dt Id:
+          dd = @order.id
+
+          dt Customer:
+          dd = @order.customer_name
+
+          dt Delivery Date:
+          dd = @order.delivery_date.strftime("%A, %B %d, %Y")
+
+          dt Delivery Location:
+          dd = @order.customer_delivery_location_name
+
+          dt Delivery Address:
+          dd 
+            = @order.customer_delivery_address.address1
+            br
+            - if @order.customer_delivery_address.address2.present?
+              = @order.customer_delivery_address.address2
+              br
+            = "#{@order.customer_delivery_address.city} , #{@order.customer_delivery_address.state} #{@order.customer_delivery_address.zip}"
+          
+          hr
+
+          table.table
+            thead
+              tr
+                th Item #
+                th Item Name
+                th Qty
+                th Price
+                th Subtotal
+            tbody
+              - @order.order_items.each do |order_item|
+                tr
+                  td = order_item.item_id
+                  td = order_item.item_name
+                  td = order_item.qty
+                  td = number_to_currency order_item.price
+                  td = number_to_currency(order_item.price * order_item.qty)
+
+          hr
+
+          dt Notes:
+          dd 
+            p
+              = @order.notes
+
+    = bottom_buttons 'Edit Order' => edit_order_path(@order)
