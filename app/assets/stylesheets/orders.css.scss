@@ -16,25 +16,26 @@
       margin-right: auto;
     }
 
+    #order_confirmed {
+      margin-top: 11px;
+      margin-left: 13px;
+    }
+
     .line-item {
       margin-bottom: 5px;
+    }
+
+    .order-notes {
+      .form-group {
+        margin-left: 0px;
+        margin-right: 0px;
+      }
     }
   }
 
   @media (max-width: $screen-xs-max) { 
     .panel-body {
-      padding-right: 0px;
-      padding-left: 0px;
 
-      .col-xs-12 {
-        padding-left: 0px;
-        padding-right: 0px;
-      }
-
-      .row {
-        margin-left: 0px;
-        margin-right: 0px;
-      }
 
       .line-items {
         margin-left: 5px;
