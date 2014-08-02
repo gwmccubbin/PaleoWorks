@@ -21,4 +21,20 @@ class Customer < ActiveRecord::Base
   def address
     addresses.first
   end
+
+  def delivery_address
+    @delivery_location ||= if !delivery
+      location.address
+    elsif delivery
+      addresses.first
+    end    
+  end
+
+  def delivery_location_name
+    @delivery_location_name ||= if !delivery
+      location.name
+    else
+      "Custom Delivery"
+    end
+  end
 end
