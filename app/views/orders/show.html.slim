@@ -12,7 +12,7 @@
           dd = @order.id
 
           dt Customer:
-          dd = @order.customer_name
+          dd = link_to @order.customer_name, @order.customer
 
           dt Delivery Date:
           dd = @order.delivery_date.strftime("%A, %B %d, %Y")
