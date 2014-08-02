@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new order_params
     @order.save
     respond_with @order
   end
