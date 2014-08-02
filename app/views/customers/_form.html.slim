@@ -33,6 +33,7 @@ div ng-app="Customers"
           = f.simple_fields_for @standard_order do |so|
             - [:breakfast, :lunch, :dinner, :special].each do |type|
               = cutlery_icon_input so, "#{type}_qty".to_sym, 'Quantity', label: type.to_s.capitalize.pluralize
+            = so.input :recurring
 
       .panel.panel-default
         .panel-heading

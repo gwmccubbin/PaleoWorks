@@ -68,6 +68,6 @@ class CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:id, :first_name, :last_name, :phone, :email, :customer_id, :active, :delivery, :notes, :location_id,
                                      addresses_attributes: [:address1, :address2, :zip],
-                                     standard_order_attributes: [:breakfast_qty, :lunch_qty, :dinner_qty, :special_qty, :notes, :recurring])
+                                     standard_order_attributes: [:breakfast_qty, :lunch_qty, :dinner_qty, :special_qty, :recurring])
   end
 end
