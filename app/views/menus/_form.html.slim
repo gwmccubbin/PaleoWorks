@@ -1,16 +1,39 @@
-= simple_form_for @menu, wrapper: :custom_form  do |f|
+div ng-app="Menus" 
 
-  = default_panel 'Menu Info'
-    
-    = f.input :name, placeholder: 'Menu Name'
-    = f.association :items, label: 'Breakfasts', collection: Item.breakfasts, include_hidden: false, 
-                    input_html: { class: 'itemSelect2' }, multiple: true, 
-                    addon_html: { class: 'glyphicon glyphicon-cutlery' }
-    = f.association :items, label: 'Lunches', collection: Item.lunches, include_hidden: false, 
-                    input_html: { class: 'itemSelect2' }, multiple: true, 
-                    addon_html: { class: 'glyphicon glyphicon-cutlery' }
-    = f.association :items, label: 'Dinners', collection: Item.dinners, include_hidden: false, 
-                    input_html: { class: 'itemSelect2' }, multiple: true, 
-                    addon_html: { class: 'glyphicon glyphicon-cutlery' }
+  = simple_form_for @menu, wrapper: :custom_form  do |f|
 
-  = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'
+    = default_panel 'Menu Info'
+      div ng-controller="MenuFormController" ng-init="initialize()"
+        = f.input :name, placeholder: 'Menu Name'
+        .form-group
+          label.col-xs-3.control-label
+            abbr title="required"  *
+            |  Start Date
+          .input-group.col-xs-7
+            span.input-group-btn
+                button.btn.btn-default ng-click="openStartDate($event)" type="button" 
+                  i.glyphicon.glyphicon-calendar
+            input.form-control id="menu_start_date" name="menu[start_date]" close-text="Close" date-disabled="disabled(date, mode)" datepicker-options="dateOptions" datepicker-popup="{{format}}" is-open="startDateOpen" max-date="'2015-06-22'" min-date="minDate" ng-model="startDateObject" ng-required="true" type="text"
+        .form-group
+          label.col-xs-3.control-label
+            abbr title="required"  *
+            |  End Date
+          .input-group.col-xs-7
+            span.input-group-btn
+                button.btn.btn-default ng-click="openEndDate($event)" type="button"
+                  i.glyphicon.glyphicon-calendar
+            input.form-control id="menu_end_date" name="menu[end_date]" close-text="Close" date-disabled="disabled(date, mode)" datepicker-options="dateOptions" datepicker-popup="{{format}}" is-open="endDateOpen" max-date="'2015-06-22'" min-date="minDate" ng-model="endDateObject" ng-required="true" type="text"
+
+        hr
+
+        = f.association :items, label: 'Breakfasts', collection: Item.breakfasts, include_hidden: false, 
+                        input_html: { class: 'itemSelect2' }, multiple: true, 
+                        addon_html: { class: 'glyphicon glyphicon-cutlery' }
+        = f.association :items, label: 'Lunches', collection: Item.lunches, include_hidden: false, 
+                        input_html: { class: 'itemSelect2' }, multiple: true, 
+                        addon_html: { class: 'glyphicon glyphicon-cutlery' }
+        = f.association :items, label: 'Dinners', collection: Item.dinners, include_hidden: false, 
+                        input_html: { class: 'itemSelect2' }, multiple: true, 
+                        addon_html: { class: 'glyphicon glyphicon-cutlery' }
+
+    = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'
