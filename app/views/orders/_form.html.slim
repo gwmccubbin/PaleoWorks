@@ -1,39 +1,62 @@
 div.order-form ng-app="Orders"
   div ng-controller="OrderFormController" ng-init="initialize(#{@order.id})"
     = simple_form_for @order do |f|
-      = f.association :customer, label_method: :full_name
-        = default_panel 'Order Info' do
-          .row.order-items
-            .col-sm-12
-              .form-control ng-show="!checkOrderItemsPresent()"
-                span.bold Start Adding Items to the order
+      = default_panel 'Order Info' do
+        .row.order-header
+          = f.association :customer, label_method: :full_name, input_html: { 'ui-select2' => "{ allowClear: true}",  'ng-model' => 'select2' }
+          .form-group
+            label.col-xs-3.control-label
+              abbr title="required"  *
+              |  Delivery Date
+            .input-group.col-xs-7
+              span.input-group-btn
+                  button.btn.btn-default ng-click="open($event)" type="button" 
+                    i.glyphicon.glyphicon-calendar
+              input.form-control id="order_deliver_date" name="order[delivery_date]" close-text="Close" date-disabled="disabled(date, mode)" datepicker-options="dateOptions" datepicker-popup="{{format}}" is-open="opened" max-date="'2015-06-22'" min-date="minDate" ng-model="dateObject" ng-required="true" type="text"
+          = f.input :confirmed, wrapper: :custom_checkbox
+        
+        hr
+        
+        .row.order-items
+          .col-sm-12
+            .form-control ng-show="!checkOrderItemsPresent()"
+              span.bold Start Adding Items to the order
 
-              .line-items ng-show="checkOrderItemsPresent()"
-                .row
-                  .col-xs-6
-                    label Item
-                  .col-xs-2
-                    label.hidden-xs Quantity
-                    label.visible-xs Qty
-                  .col-xs-2
-                    label.hidden-xs Price
-                    label.visible-xs $
-                  .col-xs-1.delete
-                    label.hidden-xs Remove?
-                    label.visible-xs Del
-                .row.line-item ng-repeat="orderItem in orderItems"
-                  .col-xs-6
-                    input id="order_items_attributes_{{$index}}_id" name="order[order_items_attributes][{{$index}}][id]" type="hidden" value="{{orderItem.id}}"
-                    select.form-control.orderSelect2 ng-model="orderItem.itemId" ng-options="item.id as item.name for item in items"
-                    input id="order_items_attributes_{{$index}}_item_id" name="order[order_items_attributes][{{$index}}][item_id]" type="hidden" value="{{orderItem.itemId}}"
-                  .col-xs-2
-                    input.form-control id="order_items_attributes_{{$index}}_qty" name="order[order_items_attributes][{{$index}}][qty]" ng-model="orderItem.qty"
-                  .col-xs-2
-                    input.form-control id="order_items_attributes_{{$index}}_price" name="order[order_items_attributes][{{$index}}][price]" ng-model="orderItem.price"
-                  .col-xs-1.delete
-                    input id="order_items_attributes_{{$index}}_destroy" name="order[order_items_attributes][{{$index}}][_destroy]" type="checkbox" ng-model="orderItem._destroy"
-          .row.order-items
-            .col-sm-12
-              a ng-click="addOrderItem()" href="" Add Order Item
+            .line-items ng-show="checkOrderItemsPresent()"
+              .row
+                .col-xs-6
+                  label Item
+                .col-xs-2
+                  label.hidden-xs Quantity
+                  label.visible-xs Qty
+                .col-xs-2
+                  label.hidden-xs Price
+                  label.visible-xs $
+                .col-xs-1.delete
+                  label.hidden-xs Remove?
+                  label.visible-xs Del
+              .row.line-item ng-repeat="orderItem in orderItems"
+                .col-xs-6
+                  input id="order_items_attributes_{{$index}}_id" name="order[order_items_attributes][{{$index}}][id]" type="hidden" value="{{orderItem.id}}"
+                  select.form-control ui-select2="" ng-model="orderItem.itemId" ng-options="item.id as item.name for item in items" ng-change="updatePrice(orderItem)"
+                  input id="order_items_attributes_{{$index}}_item_id" name="order[order_items_attributes][{{$index}}][item_id]" type="hidden" value="{{orderItem.itemId}}"
+                .col-xs-2
+                  input.form-control id="order_items_attributes_{{$index}}_qty" name="order[order_items_attributes][{{$index}}][qty]" ng-model="orderItem.qty"
+                .col-xs-2
+                  input.form-control id="order_items_attributes_{{$index}}_price" name="order[order_items_attributes][{{$index}}][price]" ng-model="orderItem.price"
+                .col-xs-1.delete
+                  input id="order_items_attributes_{{$index}}_destroy" name="order[order_items_attributes][{{$index}}][_destroy]" type="checkbox" ng-model="orderItem._destroy"
+        .row.order-items
+          .col-sm-12
+            a ng-click="addOrderItem()" href="" Add Order Item
+        
+        hr
+
+        .row.order-notes
+          .col-sm-12
+            = f.input :notes, wrapper: :full_width_text_area
+
+
+
 
       = bottom_form_buttons f, btn1 => 'btn-info', btn2 => 'btn-primary'
