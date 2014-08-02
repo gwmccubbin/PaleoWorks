@@ -1,9 +1,8 @@
 class OrdersController < ApplicationController
-  load_and_authorize_resource
-  before_filter :load_order_items, only: :index
+  load_and_authorize_resource except: [:index]
 
   def index
-    respond_with @orders
+    @orders = Order.includes(:order_items).paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
@@ -33,10 +32,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
-  def load_order_items
-    @orders = @orders.includes(:order_items)
-  end
 
   def order_params
     # TODO: Restrict to correct params
