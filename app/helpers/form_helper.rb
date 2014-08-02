@@ -9,6 +9,11 @@ module FormHelper
     end
   end
 
+  def icon_association_input(form_object, field, klass, placeholder, options = {})
+    options = options.merge(placeholder: placeholder, addon_html: { class: klass })
+    form_object.association field, options    
+  end
+
   def icon_input(form_object, field, klass, placeholder, options = {})
     options = options.merge(placeholder: placeholder, addon_html: { class: klass })
     form_object.input field, options
@@ -32,5 +37,9 @@ module FormHelper
 
   def dollar_icon_input(form_object, field, placeholder, options = {})
     icon_input form_object, field, 'icon-dollar', placeholder, options
+  end
+
+  def pencil_icon_input(form_object, field, placeholder, options = {})
+    icon_input form_object, field, 'icon-pencil', placeholder, options
   end
 end
