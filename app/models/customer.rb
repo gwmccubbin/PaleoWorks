@@ -18,6 +18,10 @@ class Customer < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   def address
     addresses.first
   end
