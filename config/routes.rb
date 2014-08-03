@@ -1,5 +1,5 @@
 PaleoWorks::Application.routes.draw do
-  root 'dashboard#index'
+  root 'dashboard#show'
   
   devise_for :users, :skip => [:sessions]
 
