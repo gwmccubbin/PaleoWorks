@@ -1,0 +1,24 @@
+.col-md-6.col-lg-6    
+  .section-title
+    span.glyphicon.glyphicon-home
+    h2 Deliveries
+    p
+      span.bold = location_count 
+      |  Total Gym Locations,  
+      span.bold = gym_delivery_order_count
+      |  Total Gym Orders
+  .panel.panel-default 
+      .panel-heading
+        .panel-title
+          span.glyphicon.glyphicon-map-marker
+          h3 Top Locations
+      table.table
+        th Location Name
+        th # Orders
+        tbody
+          - @top_locations.each do |location|
+            tr
+              td = location.name
+              td = location.orders.count
+        th.total Custom Deliveries
+        th = custom_delivery_order_count

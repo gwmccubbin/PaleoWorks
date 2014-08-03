@@ -1,0 +1,26 @@
+.col-md-6.col-lg-6.customers
+  .section-title
+    span.glyphicon.glyphicon-user
+    h2 Customers
+    p
+      span.bold = customer_count 
+      span  Total Customers 
+      span.color-grey = "(#{active_customer_count} active, #{inactive_customer_count} inactive)"
+
+  .panel.panel-default 
+      .panel-heading
+        .panel-title
+          span.glyphicon.glyphicon-retweet
+          h3 Recent Customers
+      table.table
+        th Name
+        th Location
+        th Standard Order?
+        tbody
+          - @customers.each do |customer|
+            tr
+              td = customer.name
+              td = customer.delivery_location_name
+              td.text-center
+                - standard_order_present ||= customer.standard_order.present?
+                = icon_boolean standard_order_present if standard_order_present

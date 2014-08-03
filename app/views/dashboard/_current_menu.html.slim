@@ -1,0 +1,78 @@
+.section-title
+  span.glyphicon.glyphicon-list
+  h2 Meals
+  p
+    span.bold Current Menu: # 
+    span.bold = @current_menu.id
+    = link_to '#'
+      span.glyphicon.glyphicon-pencil
+.row
+  .col-sm-6.col-md-6
+    .panel.panel-default 
+        .panel-heading
+          .panel-title
+            span.glyphicon.glyphicon-cutlery
+            h3 Breakfasts
+        table.table
+          th Menu Item
+          th Qty
+          tbody
+            - @current_menu.breakfasts.each do |breakfast|
+              tr
+                td = breakfast.name
+                td 999
+
+          th.bold Total Breakfasts 
+          th 999
+
+  .col-sm-6.col-md-6
+    .panel.panel-default 
+        .panel-heading
+          .panel-title
+            span.glyphicon.glyphicon-cutlery
+            h3 Lunches
+        table.table
+          th Menu Item
+          th Qty
+          tbody
+            - @current_menu.lunches.each do |lunch|
+              tr
+                td = lunch.name
+                td 999
+
+          th.total Total Lunches 
+          th 999
+
+  .col-sm-6.col-md-6
+    .panel.panel-default 
+        .panel-heading
+          .panel-title
+            span.glyphicon.glyphicon-cutlery
+            h3 Dinners
+        table.table
+          th Menu Item
+          th Qty
+          tbody
+            - @current_menu.dinners.each do |dinner|
+              tr
+                td = dinner.name
+                td 999
+          th.total Total Dinners 
+          th 999
+
+  .col-sm-6.col-md-6
+    .panel.panel-default 
+        .panel-heading
+          .panel-title
+            span.glyphicon.glyphicon-asterisk
+            h3 Specials
+        table.table
+          th Menu Item
+          th Qty
+          tbody
+            - @current_menu.specials.each do |special|
+              tr
+                td = special.name
+                td 999
+          th.total Total Specials 
+          th 999
