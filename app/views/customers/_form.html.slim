@@ -30,7 +30,7 @@ div ng-app="Customers"
             h3 Standard Order
             input type="checkbox" ng-model="standardOrder" ng-init="standardOrder = #{@customer.standard_order.present?}"
         .panel-body ng-hide="!standardOrder" disable_children="!standardOrder"
-          = f.simple_fields_for @standard_order do |so|
+          = f.simple_fields_for :standard_order, @standard_order do |so|
             - [:breakfast, :lunch, :dinner, :special].each do |type|
               = cutlery_icon_input so, "#{type}_qty".to_sym, 'Quantity', label: type.to_s.capitalize.pluralize
             = so.input :recurring
