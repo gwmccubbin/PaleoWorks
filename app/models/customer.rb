@@ -13,6 +13,9 @@ class Customer < ActiveRecord::Base
   delegate :name, to: :location, prefix: true, allow_nil: true
 
   scope :active, -> { where(active: true) }
+  scope :recent, ->(n) { order('created_at DESC').limit(n) }
+  scope :recurring, -> { joins(:standard_order).where(StandardOrder.arel_table[:recurring].eq(true)) }
+
 
   def full_name
     "#{first_name} #{last_name}"
@@ -39,6 +42,22 @@ class Customer < ActiveRecord::Base
       location.name
     else
       "Custom Delivery"
+    end
+  end
+
+  def recurring?
+    if standard_order.present?
+      standard_order.recurring?
+    end
+  end
+
+  class << self
+    def active_count
+      where(active: true).count
+    end
+
+    def inactive_count
+      where(active: false).count
     end
   end
 end
