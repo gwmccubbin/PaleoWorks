@@ -1,9 +1,10 @@
 @OrdersApp = angular.module 'Orders', ['ui.select2', 'ui.bootstrap', 'rails']
 @OrdersApp.controller 'OrderFormController', ($scope, Item, Order, OrderItem) ->
   $scope.orderItems = []
-  $scope.initialize = (id) ->
+  $scope.initialize = (order) ->
+    $scope.order = order
     Item.query().then (items) -> $scope.items = items
-    OrderItem.query(null, {orderId: id}).then (orderItems) ->
+    OrderItem.query(null, {orderId: order.id}).then (orderItems) ->
       $scope.orderItems = orderItems
     $scope.dateObject = Date.future('Monday')
 
