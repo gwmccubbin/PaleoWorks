@@ -4,8 +4,7 @@
   p
     span.bold Current Menu: # 
     span.bold = @current_menu.id
-    = link_to '#'
-      span.glyphicon.glyphicon-pencil
+
 .row
   .col-sm-6.col-md-6
     .panel.panel-default 
@@ -17,13 +16,13 @@
           th Menu Item
           th Qty
           tbody
-            - @current_menu.breakfasts.each do |breakfast|
+            - @breakfasts.each do |breakfast|
               tr
-                td = breakfast.name
-                td 999
+                td= breakfast.name
+                td= breakfast.total_quantity
 
           th.bold Total Breakfasts 
-          th 999
+          th= @breakfasts.sum { |b| b.total_quantity }
 
   .col-sm-6.col-md-6
     .panel.panel-default 
@@ -35,13 +34,13 @@
           th Menu Item
           th Qty
           tbody
-            - @current_menu.lunches.each do |lunch|
+            - @lunches.each do |lunch|
               tr
-                td = lunch.name
-                td 999
+                td= lunch.name
+                td= lunch.total_quantity 
 
           th.total Total Lunches 
-          th 999
+          th= @lunches.sum { |l| l.total_quantity }
 
   .col-sm-6.col-md-6
     .panel.panel-default 
@@ -53,12 +52,12 @@
           th Menu Item
           th Qty
           tbody
-            - @current_menu.dinners.each do |dinner|
+            - @dinners.each do |dinner|
               tr
-                td = dinner.name
-                td 999
+                td= dinner.name
+                td= dinner.total_quantity
           th.total Total Dinners 
-          th 999
+          th= @dinners.sum { |d| d.total_quantity }
 
   .col-sm-6.col-md-6
     .panel.panel-default 
@@ -70,9 +69,9 @@
           th Menu Item
           th Qty
           tbody
-            - @current_menu.specials.each do |special|
+            - @specials.each do |special|
               tr
-                td = special.name
-                td 999
+                td= special.name
+                td= special.total_quantity
           th.total Total Specials 
-          th 999
+          th= @specials.sum { |s| s.total_quantity }          

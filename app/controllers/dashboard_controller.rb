@@ -9,12 +9,17 @@ class DashboardController < ApplicationController
     @top_locations = Location.top(5)
     @recent_customers = Customer.recent(5)
     @current_menu = Menu.current.includes(:items).first
+    @order_items = OrderItem.dashboard_summary
+    @breakfasts = @order_items['Breakfast'] || []
+    @lunches = @order_items['Lunch'] || []
+    @dinners = @order_items['Dinner'] || []
+    @specials = @order_items['Special'] || []
   end
 
   private
 
   [:inactive_customer_count, :active_customer_count, :customer_count].each do |type|
-    define_method type do      
+    define_method type do     
       unless instance_variable_defined? "@type"
         instance_variable_set "@#{type.to_s}", Customer.send(type.to_s.gsub('customer_', ''))
       end
