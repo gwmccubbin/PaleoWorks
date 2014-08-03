@@ -4,15 +4,16 @@ class Location < ActiveRecord::Base
   has_many :orders
 
   accepts_nested_attributes_for :address
-  
+
   validates :name, presence: true
 
-  scope :top, ->(n) { 
-                      joins(:orders)
-                      .group("locations.id, orders.location_id")
-                      .order('count(orders.location_id) DESC')
-                      .limit(n) 
-                    }
+  scope :top, ->(n) {
+    select('locations.id, locations.name, orders.location_id, count(orders.location_id) as order_count')
+    .joins(:orders)
+    .group("locations.id, orders.location_id")
+    .order('order_count DESC')
+    .limit(n)
+  }
 
   def street_address
     if address.address2
