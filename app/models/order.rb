@@ -12,6 +12,10 @@ class Order < ActiveRecord::Base
 
   delegate :name, :delivery_address, :delivery_location_name, to: :customer, prefix: true, allow_nil: true
 
+  scope :recent, ->(n) { order('created_at DESC').limit(n) }
+  scope :custom_delivery, -> { where('location_id is NULL') }
+  scope :gym_delivery, -> { where('location_id is NOT NULL') }
+
 
   private
 
