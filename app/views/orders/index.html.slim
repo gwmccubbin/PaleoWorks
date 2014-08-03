@@ -20,7 +20,7 @@
           - @orders.each do |order|
             tr
               td = link_to order.id, order
-              td = link_to order.customer_name, customer_path(order.customer)
+              td = link_to order.customer_name, order
               td = order.delivery_date.strftime('%m/%d/%Y')
               td = order.customer_delivery_location_name
               td = icon_true? order.confirmed
