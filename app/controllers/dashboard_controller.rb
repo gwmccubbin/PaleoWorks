@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :instantiate_customer_and_build_relationships, only: [:show]
+  
   helper_method :active_customer_count, :inactive_customer_count, :customer_count
   helper_method :location_count, :custom_delivery_order_count, :gym_delivery_order_count
 

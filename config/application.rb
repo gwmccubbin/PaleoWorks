@@ -21,5 +21,9 @@ module PaleoWorks
     # config.i18n.default_locale = :de
 
     config.version = '0.1.7'
+
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+    end
   end
 end
