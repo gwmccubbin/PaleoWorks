@@ -2,15 +2,16 @@
 = provide :title, title
 
 = page_for @orders, action_name
-  = page_heading title, 'menu'
+  = page_heading title, 'menu', button_name: 'Add Order', button_path: new_order_path
 
   = page_content action: action_name
 
-    => link_to 'Current Orders', orders_path(type: 'current', customer_id: params[:customer_id])
-    | |
-    =< link_to 'Past Orders', orders_path(type: 'past', customer_id: params[:customer_id])
-    |  |
-    =< link_to 'All Orders', orders_path(customer_id: params[:customer_id])
+    .well.well-info.well-sm
+      => link_to 'Current Orders', orders_path(type: 'current', customer_id: params[:customer_id])
+      | |
+      =< link_to 'Past Orders', orders_path(type: 'past', customer_id: params[:customer_id])
+      |  |
+      =< link_to 'All Orders', orders_path(customer_id: params[:customer_id])
   
     .table-responsive
       table.table.table-striped
