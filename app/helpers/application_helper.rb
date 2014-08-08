@@ -102,28 +102,39 @@ module ApplicationHelper
   end
 
   def delete_link_options(object, action)
-    delete_args = { method: 'delete', data: { confirm: "Are you sure you want to delete #{object_name(object)}?" } }
+    delete_args = { 
+      method: 'delete', 
+      data: { 
+        confirm: "Are you sure you want to delete #{object_name(object)}?" 
+      } 
+    }
 
     action == 'destroy' ? delete_args :  { }
   end
 
   def table_actions(object)
+    actions = [
+      { action: 'show', icon: 'eye-open'}, 
+      { action: 'edit', icon: 'pencil'},
+      { action: 'destroy', icon: 'remove'}
+    ]
+
     content_tag :ul do
-       
-      [{ action: 'show', icon: 'eye-open'}, 
-       { action: 'edit', icon: 'pencil'},
-       { action: 'destroy', icon: 'remove'}].each do |link|
+
+      actions.each do |link|
 
         concat content_tag(:li, link_to(content_tag(:span, nil, class: "glyphicon glyphicon-#{link[:icon]}"), 
-                                        link_options(object_controller(object), link[:action], object),
-                                        delete_link_options(object, link[:action])))
+          link_options(object_controller(object), link[:action], object),
+          delete_link_options(object, link[:action])))
       end
     end
   end
 
   def bottom_buttons(button_names_hash)
     content_tag :div, class: 'bottom-actions pull-right' do 
+
       content = content_tag :ul do      
+
         button_names_hash.collect do |btn_name, path| 
           concat(content_tag(:li, link_to(btn_name, path, class: 'btn btn-primary'))) 
         end
