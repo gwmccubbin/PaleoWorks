@@ -1,7 +1,7 @@
 = provide :title, 'All Menu Items'
 
 = page_for @item, action_name
-  = page_heading 'All Menu Items', 'cutlery'
+  = page_heading 'All Menu Items', 'cutlery', button_name: 'Add Item', button_path: new_item_path
 
   = page_content action: action_name
   

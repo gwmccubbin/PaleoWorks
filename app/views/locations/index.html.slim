@@ -1,7 +1,7 @@
 = provide :title, 'All Delivery Locations'
 
 = page_for @location, action_name
-  = page_heading 'All Delivery Locations', 'home'
+  = page_heading 'All Delivery Locations', 'home', button_name: 'Add Location', button_path: new_location_path
 
   = page_content action: action_name
 
