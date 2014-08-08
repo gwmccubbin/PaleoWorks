@@ -57,10 +57,11 @@ module ApplicationHelper
     content = content_tag :div, class: 'page-heading' do
       c = content_tag(:span, nil,  class: "glyphicon glyphicon-#{icon_name}") + content_tag(:h2, heading)
       
-      c += link_to_if(options[:action] == 'show', 
-                      content_tag(:span, nil, class: 'glyphicon glyphicon-pencil'), 
-                      link_options(object_controller(options[:object]), 'edit', id: options[:object])
-                      ) { }
+      c += link_to_if(options[:action] == 'show', content_tag(:span, nil, class: 'glyphicon glyphicon-pencil'), 
+        link_options(object_controller(options[:object]), 'edit', id: options[:object])
+      ) { }
+
+      c += link_to_if(options[:button_name], options[:button_name], options[:button_path], class: 'btn btn-primary pull-right hidden-xs')
     end
 
     content += content_tag :hr
