@@ -22,7 +22,8 @@
               td = link_to location.name, location_path(location)
               td = location.phone
               td = location.street_address if location.address.present?
-              td = location.customers.count       
+               / TOFIX: refactor this; Use initial query to get cutsomer_count
+              td = location.customers.count     
               td.table-actions 
                 = table_actions location
     
