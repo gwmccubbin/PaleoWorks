@@ -10,7 +10,7 @@
           
           .modal-body
             .form-group
-              .form-control.grey-bg
+              .form-control.blue-bg.title-control
                 label Customer Info
 
             .form-group
@@ -18,14 +18,12 @@
                 span.input-group-addon
                   span.glyphicon.glyphicon-user
                 = f.text_field :first_name, placeholder: 'First Name', class: 'form-control'
-              span.help-block can't be blank
             
             .form-group
               .input-group
                 span.input-group-addon
                   span.glyphicon.glyphicon-user
                 = f.text_field :last_name, placeholder: 'Last Name', class: 'form-control'
-              span.help-block can't be blank
 
             .form-group
               .input-group
@@ -39,9 +37,8 @@
                   span.icon-email
                 = f.text_field :email, placeholder: 'Email', class: 'form-control'  
 
-            hr
             .form-group
-              .form-control.grey-bg
+              .form-control.blue-bg.title-control
                 label Delivery Location
 
             #gymDelivery ng-hide="customDelivery"
@@ -77,9 +74,8 @@
                         span.glyphicon.glyphicon-home
                       = a.text_field :zip, placeholder: 'Zipcode', class: 'form-control'
 
-            hr
             .form-group
-              .form-control.grey-bg
+              .form-control.blue-bg.title-control
                 label Standard Order
                 input#selectStandardOrder type="checkbox" ng-model="hasStandardOrder" ng-init="hasStandardOrder = true"
 
@@ -117,9 +113,8 @@
                   .form-control
                     = so.label :recurring, 'Recurring Order?'
                     = so.check_box :recurring
-            hr  
             .form-group
-              .form-control.grey-bg            
+              .form-control.blue-bg.title-control           
                 label Comments
                 input#selectComments type="checkbox" ng-model="hasComments" ng-init="hasComments = false"
 
@@ -133,4 +128,4 @@
 
           .modal-footer
             button.btn.btn-default data-dismiss="modal" type="button"  Close
-            = f.submit 'Save Customer', class: 'btn btn-primary', 'ng-disabled' => '!formValid'
+            = f.submit 'Save Customer', class: 'btn btn-primary'
