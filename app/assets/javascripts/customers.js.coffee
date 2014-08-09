@@ -1,5 +1,8 @@
-@CustomersApp = angular.module 'Customers', []
+@CustomersApp = angular.module 'Customers', ['ui.select2']
 @CustomersApp.controller 'CustomerFormController', ($scope) ->
+
+@CustomersApp.controller 'CustomerModalFormController', ($scope) ->
+  $scope.checkValidation = () ->
 
 @CustomersApp.directive 'disableChildren', () ->
   link: (scope, element, lattrs) ->
