@@ -33,9 +33,9 @@
             tr
               td = link_to order.id, order
               td = link_to order.customer_name, order
-              th.hidden-sm.hidden-xs 
+              td.hidden-sm.hidden-xs 
                 = order.delivery_date.strftime('%m/%d/%Y')
-              th.hidden-sm.hidden-xs 
+              td.hidden-sm.hidden-xs 
                 = order.customer_delivery_location_name
               td = icon_true? order.confirmed
 
