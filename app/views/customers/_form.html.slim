@@ -11,7 +11,7 @@ div ng-app="Customers"
 
       = default_panel 'Delivery Location' do
         #gymDelivery ng-hide="customDelivery"
-          = f.association :location, addon_html: { class: 'glyphicon glyphicon-home'}
+          = f.association :location, addon_html: { class: 'glyphicon glyphicon-home' }, input_html: {class: 'select-2', 'ui-select2'  =>'{ allowClear: true, width: resolve}', 'ng-model' => 'locations'}
 
         .form-control-title.col-xs-10.col-xs-offset-1
           .form-control.grey-bg
