@@ -2,14 +2,7 @@
   .db-title
     span.glyphicon.glyphicon.glyphicon-dashboard
     h1 Dashboard
-  ul.inline-list.db-buttons.hidden-sm.hidden-md.hidden-lg
-    li.db-button
-      button.btn.btn-primary data-target="#addCustomer" data-toggle="modal" 
-        | Add Customer
-    / li.db-button
-    /   button.btn.btn-primary data-target="#editCustomer" data-toggle="modal" 
-    /     | Edit Customer 
-  
+  / = render 'modal_buttons'
   hr
 
   = render 'reports'
