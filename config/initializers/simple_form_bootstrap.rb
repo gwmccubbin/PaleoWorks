@@ -6,9 +6,9 @@ SimpleForm.setup do |config|
   config.wrappers :custom_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-    b.use :label, class: 'col-xs-3 control-label'
+    b.use :label, class: 'col-xs-12 col-sm-3 control-label'
 
-    b.wrapper tag: 'div', class: 'input-group col-xs-7' do |ba|
+    b.wrapper tag: 'div', class: 'input-group col-xs-10 col-xs-offset-1 col-sm-7' do |ba|
       ba.wrapper :addon_wrapper, tag: 'span', class: 'input-group-addon' do |bb|
         bb.wrapper :addon, tag: 'span', class: 'glyphicon glyphicon-user' do |bc|
 
@@ -26,9 +26,9 @@ SimpleForm.setup do |config|
 
   config.wrappers :custom_boolean, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
-    b.use :label, class: 'col-xs-3 control-label'
+    b.use :label, class: 'col-xs-12 col-xs-3 control-label'
 
-    b.wrapper tag: 'div', class: 'col-xs-7 checkbox-div' do |ba|
+    b.wrapper tag: 'div', class: 'col-xs-10 col-xs-offset-1 col-xs-7 checkbox-div' do |ba|
       ba.wrapper :inner, tag: 'div', class: 'form-control' do |bb|
         bb.use :input, label: false
         bb.use :custom_hint, wrap_with: { tag: 'span' }
@@ -112,7 +112,7 @@ SimpleForm.setup do |config|
 
     b.wrapper tag: 'div', class: 'col-sm-offset-3 col-sm-9' do |wr|
       wr.wrapper tag: 'div', class: 'checkbox' do |ba|
-        ba.use :label_input, class: 'col-sm-9'
+        ba.use :label_input, class: 'col-xs-12 col-sm-9'
       end
 
       wr.use :error, wrap_with: { tag: 'span', class: 'help-block' }
