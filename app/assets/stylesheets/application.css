@@ -10,10 +10,10 @@
  *
  *= require bootstrap
  *= require select2
- *= require select2-bootstrap
  *= require select2-custom
  *= require_self
  *= require_tree .
+ *= require media-queries
  */
 
 /*@font-face {*/
