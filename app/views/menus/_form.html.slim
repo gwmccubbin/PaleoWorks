@@ -6,19 +6,19 @@ div ng-app="Menus"
       div ng-controller="MenuFormController" ng-init="initialize()"
         = f.input :name, placeholder: 'Menu Name'
         .form-group
-          label.col-xs-3.control-label
+          label.col-sm-3.col-xs-12.control-label
             abbr title="required"  *
             |  Start Date
-          .input-group.col-xs-7
+          .input-group.col-sm-7.col-xs-10.col-xs-offset-1
             span.input-group-btn
                 button.btn.btn-default ng-click="openStartDate($event)" type="button" 
                   i.glyphicon.glyphicon-calendar
             input.form-control id="menu_start_date" name="menu[start_date]" close-text="Close" date-disabled="disabled(date, mode)" datepicker-options="dateOptions" datepicker-popup="{{format}}" is-open="startDateOpen" max-date="'2015-06-22'" min-date="minDate" ng-model="startDateObject" ng-required="true" type="text"
         .form-group
-          label.col-xs-3.control-label
+          label.col-sm-3.col-xs-12.control-label
             abbr title="required"  *
             |  End Date
-          .input-group.col-xs-7
+          .input-group.col-sm-7.col-xs-10.col-xs-offset-1
             span.input-group-btn
                 button.btn.btn-default ng-click="openEndDate($event)" type="button"
                   i.glyphicon.glyphicon-calendar
