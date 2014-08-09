@@ -16,6 +16,12 @@
       margin-right: auto;
     }
 
+    .order_confirmed {
+      .boolean {
+        margin-top: 0px !important;
+      }
+    }
+
     #order_confirmed {
       margin-top: 11px;
       margin-left: 13px;
@@ -29,6 +35,20 @@
       .form-group {
         margin-left: 0px;
         margin-right: 0px;
+      }
+    }
+
+    .order-items, .order-notes {
+      .col-sm-12 {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }
+
+    .order-items {
+      input {
+        padding-left: 4px;
+        padding-right: 4px;
       }
     }
   }

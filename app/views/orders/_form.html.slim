@@ -5,10 +5,10 @@ div.order-form ng-app="Orders"
         .row.order-header
           = f.association :customer, label_method: :full_name, input_html: { 'ui-select2' => "{ allowClear: true}", 'ng-model' => 'order.customer_id' }
           .form-group
-            label.col-xs-3.control-label
+            label.col-sm-3.col-xs-12.control-label
               abbr title="required"  *
               |  Delivery Date
-            .input-group.col-xs-7
+            .input-group.col-xs-10.col-xs-offset-1.col-sm-7
               span.input-group-btn
                   button.btn.btn-default ng-click="open($event)" type="button" 
                     i.glyphicon.glyphicon-calendar
