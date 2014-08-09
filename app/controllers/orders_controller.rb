@@ -22,8 +22,17 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new order_params
+
+    path = if params[:commit] == 'Add Order'
+             orders_path
+           elsif params[:commit] == 'Save & Add New'
+             new_order_path
+           else
+             orders_path
+           end
+
     @order.save
-    respond_with @order
+    respond_with @order, location: path
   end
 
   def show
@@ -34,8 +43,14 @@ class OrdersController < ApplicationController
   end
 
   def update
+    path = if params[:commit] == 'Save & Continue'
+             edit_order_path @order
+           elsif params[:commit] == 'Update order'
+             order_path @order
+           end
+
     @order.update(order_params)
-    respond_with @order
+    respond_with @order, location: path
   end
 
   def destroy
