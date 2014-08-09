@@ -11,19 +11,25 @@
           tr
             th #
             th Name
-            th Phone
-            th Street Address
-            th Total Customers
+            th.hidden-sm.hidden-xs  
+              | Phone
+            th.hidden-sm.hidden-xs  
+              | Street Address
+            th.hidden-sm.hidden-xs 
+              | Total Customers
             th Actions
         tbody
           - @locations.each do |location|
             tr
               td = location.id
               td = link_to location.name, location_path(location)
-              td = location.phone
-              td = location.street_address if location.address.present?
-               / TOFIX: refactor this; Use initial query to get cutsomer_count
-              td = location.customers.count     
+              td.hidden-sm.hidden-xs  
+                = location.phone
+              td.hidden-sm.hidden-xs  
+                = location.street_address if location.address.present?
+                / TOFIX: refactor this; Use initial query to get cutsomer_count
+              td.hidden-sm.hidden-xs 
+                = location.customers.count     
               td.table-actions 
                 = table_actions location
     

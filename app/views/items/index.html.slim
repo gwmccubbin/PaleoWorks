@@ -12,17 +12,23 @@
             th #
             th Name
             th Type
-            th Cost
-            th Price
+            th.hidden-sm.hidden-xs 
+              | Cost
+            th.hidden-sm.hidden-xs 
+              | Price
             th Actions
           tbody
             - @items.each do |item|
                 tr
                   td = item.id
-                  td = link_to "#{item.name}", item_path(item)
+                  td
+                    .truncate
+                      = link_to "#{item.name}", item_path(item)
                   td = item.item_type.name
-                  td = number_to_currency item.cost
-                  td = number_to_currency item.price
+                  td.hidden-sm.hidden-xs
+                    = number_to_currency item.cost
+                  td.hidden-sm.hidden-xs 
+                    = number_to_currency item.price
                   td.table-actions
                     = table_actions item  
 

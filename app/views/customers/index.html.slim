@@ -10,24 +10,40 @@
         thead
           tr
             th #
-            th First
-            th Last &#9660
-            th Phone
-            th Pickup Location
-            th Custom Delivery
-            th Standard Order
+            th.hidden-sm.hidden-xs
+              | First
+            th.hidden-sm.hidden-xs
+              | Last &#9660
+            th.hidden-md.hidden-lg
+              | Name
+            th.hidden-sm.hidden-xs 
+              | Phone
+            th.hidden-sm.hidden-xs 
+              | Pickup Location
+            th.hidden-sm.hidden-xs 
+              | Custom Delivery
+            th.hidden-sm.hidden-xs 
+              | Standard Order
             th Active
             th Actions
         tbody
           - @customers.each do |customer|
             tr class=('inactive' if !customer.active)        
               td= customer.id
-              td= link_to "#{customer.first_name}", customer_path(customer)
-              td= link_to "#{customer.last_name}", customer_path(customer)
-              td= number_to_phone customer.phone, area_code: true
-              td= customer.location.name if customer.location_id
-              td.text-center= icon_true? customer.delivery
-              td.text-center= icon_true? customer.standard_order.present?
+              td.hidden-sm.hidden-xs
+                = link_to "#{customer.first_name}", customer_path(customer)
+              td.hidden-sm.hidden-xs
+                = link_to "#{customer.last_name}", customer_path(customer)
+              td.hidden-md.hidden-lg
+                = link_to "#{customer.full_name}", customer_path(customer)
+              td.hidden-sm.hidden-xs
+                = number_to_phone customer.phone, area_code: true
+              td.hidden-sm.hidden-xs
+                = customer.location.name if customer.location_id
+              td.text-center.hidden-sm.hidden-xs
+                = icon_true? customer.delivery
+              td.text-center.hidden-sm.hidden-xs
+                = icon_true? customer.standard_order.present?
               td.text-center= icon_boolean customer.active
 
               td.table-actions
