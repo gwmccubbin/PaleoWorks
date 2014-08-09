@@ -26,9 +26,9 @@ SimpleForm.setup do |config|
 
   config.wrappers :custom_boolean, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
-    b.use :label, class: 'col-xs-12 col-xs-3 control-label'
+    b.use :label, class: 'col-xs-12 col-sm-3 control-label'
 
-    b.wrapper tag: 'div', class: 'col-xs-10 col-xs-offset-1 col-xs-7 checkbox-div' do |ba|
+    b.wrapper tag: 'div', class: 'input-group col-xs-10 col-xs-offset-1 col-sm-7 checkbox-div' do |ba|
       ba.wrapper :inner, tag: 'div', class: 'form-control' do |bb|
         bb.use :input, label: false
         bb.use :custom_hint, wrap_with: { tag: 'span' }
