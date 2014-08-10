@@ -1,22 +1,26 @@
+body.devise {
+  padding: 0px;
+}
 .sign-in {
-  width: 400px;
-  margin: 0px auto 0px auto;
+  width: 280px;
+  margin: 15px auto 0px auto;
 
   h2 {
     text-align: center;
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
   .panel-body {
-    padding-top: 50px;
+    padding-top: 20px;
 
     .input-group {
       margin-bottom: 15px;
     }
 
     .bottom-actions{
-      margin-bottom: 50px;
 
       .check-box {
         float: left;
@@ -24,7 +28,6 @@
 
       .check-box {
         margin-top: 10px;
-        font-size: 16px;
 
         input[type=checkbox]{
           margin-right: 20px;

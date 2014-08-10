@@ -18,5 +18,6 @@ html lang="en"
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application"
 
-  body
+  body.devise
+      = render partial: 'shared/flash_messages', flash: flash
       = yield
