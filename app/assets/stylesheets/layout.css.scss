@@ -1,8 +1,43 @@
 // layout styles
 .alert {
-  margin-top: 10px;
+  text-align: center;
+  height: 61px;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  border-radius: 0px;
 }
 
 body {
   padding-top: 50px;
+}
+
+body.app {
+  /* Large desktop */
+  @media (min-width: 1200px) { 
+    .alert{
+      margin-left: 16.77%;
+    }
+  }
+
+  /* Portrait tablet to landscape and desktop */
+  @media (min-width: 768px) and (max-width: 979px) { 
+    .alert{
+      margin-left: 16.77%;
+    }
+  }
+
+  /* Landscape phone to portrait tablet */
+  @media (max-width: 767px) { 
+    .alert{
+      margin-left: 0px;
+    }
+  }
+
+  /* Landscape phones and down */
+  @media (max-width: 480px) { 
+    .alert{
+      margin-left: 0px;
+    }
+  }  
 }
